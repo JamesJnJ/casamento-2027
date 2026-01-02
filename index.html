@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <!--
 	James Andrade Moreno Jr
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	Casamento 2027: Ana Luiza e James
 -->
 <html>
 	<head>
@@ -476,7 +476,7 @@
 				<section class="wrapper style1 align-center" id="galeria">
 					<div class="inner">
 						<h2>Nossos Momentos Especiais</h2>
-						<p>Uma coleção de memórias que construímos juntos ao longo dessa linda jornada de amor.</p>
+						<p>Uma coleção de memórias que construímos juntos ao longo dessa lida jornada de amor.</p>
 					</div>
 					<!-- Gallery - Carrossel de Fotos -->
 					<div class="gallery style2 medium lightbox onscroll-fade-in">
@@ -826,7 +826,7 @@
 				// Atualizar contador a cada segundo
 				setInterval(atualizarContador, 1000);
 				
-				// Sistema de Música - MODIFICADO (inicia automaticamente)
+				// Sistema de Música - VERSÃO MELHORADA PARA AUTOPLAY
 				const musicPlayer = document.getElementById('musicPlayer');
 				const playBtn = document.getElementById('playBtn');
 				const pauseBtn = document.getElementById('pauseBtn');
@@ -835,65 +835,115 @@
 				
 				let audio = null;
 				let isPlaying = false;
+				let autoplayAttempted = false;
 				
-				// Função para inicializar e tocar música automaticamente
-				function initAndPlayMusic() {
+				// Criar elemento de áudio assim que possível
+				function createAudio() {
 					if (!audio) {
-						// Criar elemento de áudio
-						audio = new Audio('assets/music/you_look_like_you_love_me.mp3');
-						audio.loop = true;
-						audio.volume = 0.3; // Volume um pouco mais baixo para início automático
-						audio.preload = 'auto'; // Pré-carrega a música
-						
-						// Configurar eventos do áudio
-						audio.addEventListener('play', function() {
-							isPlaying = true;
-							playBtn.style.display = 'none';
-							pauseBtn.style.display = 'flex';
-							musicInfo.textContent = 'Tocando...';
-						});
-						
-						audio.addEventListener('pause', function() {
-							isPlaying = false;
-							playBtn.style.display = 'flex';
-							pauseBtn.style.display = 'none';
-							musicInfo.textContent = 'Pausado';
-						});
-						
-						audio.addEventListener('ended', function() {
-							isPlaying = false;
-							playBtn.style.display = 'flex';
-							pauseBtn.style.display = 'none';
-							musicInfo.textContent = 'Finalizado';
-						});
-						
-						audio.addEventListener('error', function(error) {
-							console.log('Erro ao carregar música:', error);
-							musicInfo.textContent = 'Erro ao carregar';
-							playBtn.style.display = 'flex';
-							pauseBtn.style.display = 'none';
-						});
+						try {
+							audio = new Audio('assets/music/you_look_like_you_love_me.mp3');
+							audio.loop = true;
+							audio.volume = 0.5; // Volume médio
+							audio.preload = 'auto';
+							
+							// Configurar eventos do áudio
+							audio.addEventListener('play', function() {
+								isPlaying = true;
+								playBtn.style.display = 'none';
+								pauseBtn.style.display = 'flex';
+								musicInfo.textContent = 'Tocando...';
+								console.log('Música iniciada com sucesso');
+							});
+							
+							audio.addEventListener('pause', function() {
+								isPlaying = false;
+								playBtn.style.display = 'flex';
+								pauseBtn.style.display = 'none';
+								musicInfo.textContent = 'Pausado';
+							});
+							
+							audio.addEventListener('ended', function() {
+								isPlaying = false;
+								playBtn.style.display = 'flex';
+								pauseBtn.style.display = 'none';
+								musicInfo.textContent = 'Finalizado';
+							});
+							
+							audio.addEventListener('error', function(error) {
+								console.error('Erro ao carregar música:', error);
+								musicInfo.textContent = 'Erro ao carregar';
+								playBtn.style.display = 'flex';
+								pauseBtn.style.display = 'none';
+							});
+							
+							console.log('Áudio criado com sucesso');
+						} catch (error) {
+							console.error('Erro ao criar áudio:', error);
+						}
+					}
+				}
+				
+				// Função para tentar autoplay de forma agressiva
+				function tryAutoplay() {
+					if (autoplayAttempted) return;
+					
+					autoplayAttempted = true;
+					
+					if (!audio) {
+						createAudio();
+						if (!audio) return;
 					}
 					
-					// Tentar tocar imediatamente
+					// Estratégia 1: Tentar play diretamente
 					const playPromise = audio.play();
 					
 					if (playPromise !== undefined) {
-						playPromise.then(function() {
-							// Música iniciada com sucesso
-							console.log('Música iniciada automaticamente');
-						}).catch(function(error) {
-							// Navegador bloqueou autoplay - mostrar botão play
-							console.log('Autoplay bloqueado pelo navegador:', error);
-							playBtn.style.display = 'flex';
-							pauseBtn.style.display = 'none';
-							musicInfo.textContent = 'Clique para tocar';
-							
-							// Adicionar mensagem educativa
-							if (error.name === 'NotAllowedError') {
+						playPromise
+							.then(() => {
+								console.log('Autoplay funcionou!');
+							})
+							.catch(error => {
+								console.log('Autoplay bloqueado, tentando estratégia 2:', error);
+								
+								// Estratégia 2: Aguardar interação do usuário
 								musicInfo.textContent = 'Clique para tocar música';
-							}
+								playBtn.style.display = 'flex';
+								pauseBtn.style.display = 'none';
+								
+								// Tentar novamente em alguns segundos
+								setTimeout(tryDelayedAutoplay, 2000);
+								
+								// Tentar novamente após qualquer interação do usuário
+								document.addEventListener('click', resumeAudioContext, { once: true });
+								document.addEventListener('touchstart', resumeAudioContext, { once: true });
+								document.addEventListener('keydown', resumeAudioContext, { once: true });
+							});
+					}
+				}
+				
+				// Função para tentar autoplay com delay
+				function tryDelayedAutoplay() {
+					if (!audio || isPlaying) return;
+					
+					audio.play()
+						.then(() => {
+							console.log('Autoplay funcionou após delay');
+						})
+						.catch(error => {
+							console.log('Autoplay ainda bloqueado após delay:', error);
 						});
+				}
+				
+				// Função para retomar contexto de áudio após interação
+				function resumeAudioContext() {
+					if (audio && !isPlaying) {
+						audio.play()
+							.then(() => {
+								console.log('Música iniciada após interação do usuário');
+							})
+							.catch(error => {
+								console.log('Erro após interação:', error);
+							});
 					}
 				}
 				
@@ -916,20 +966,23 @@
 					}
 				}
 				
-				// Função para tocar música quando o usuário clicar no botão play
+				// Função para tocar música
 				function playMusic() {
+					if (!audio) {
+						createAudio();
+					}
+					
 					if (audio && !isPlaying) {
-						audio.play();
-					} else if (!audio) {
-						initAndPlayMusic();
+						audio.play()
+							.then(() => {
+								console.log('Música iniciada manualmente');
+							})
+							.catch(error => {
+								console.error('Erro ao iniciar música:', error);
+								musicInfo.textContent = 'Erro ao tocar';
+							});
 					}
 				}
-				
-				// Inicializar música automaticamente quando a página carregar
-				// Pequeno delay para garantir que tudo está carregado
-				setTimeout(function() {
-					initAndPlayMusic();
-				}, 500);
 				
 				// Event listeners para os botões
 				if (playBtn) {
@@ -954,6 +1007,19 @@
 							audio.play();
 						}
 					}
+				});
+				
+				// Iniciar o processo de autoplay
+				createAudio();
+				
+				// Pequeno delay para garantir que tudo está carregado
+				setTimeout(() => {
+					tryAutoplay();
+				}, 500);
+				
+				// Também tentar após a página estar completamente carregada
+				window.addEventListener('load', function() {
+					setTimeout(tryAutoplay, 1000);
 				});
 				
 				// Validação do formulário
