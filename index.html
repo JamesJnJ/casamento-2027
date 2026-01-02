@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <!--
+	James Andrade Moreno Jr
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
@@ -25,21 +26,18 @@
 				min-width: 100px;
 				box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 			}
-
 			.contador-item span {
 				font-size: 3em;
 				font-weight: bold;
 				display: block;
 				color: #000000; /* Texto preto */
 			}
-
 			.contador-item p {
 				margin: 10px 0 0 0;
 				font-size: 0.9em;
 				opacity: 0.8;
 				color: #333333; /* Texto mais escuro */
 			}
-
 			.mapa-container {
 				width: 100%;
 				height: 400px;
@@ -47,14 +45,12 @@
 				border-radius: 10px;
 				overflow: hidden;
 			}
-
 			.dress-code-examples {
 				display: flex;
 				flex-direction: column;
 				gap: 30px;
 				margin-top: 30px;
 			}
-
 			.dress-code-example {
 				display: flex;
 				align-items: center;
@@ -63,18 +59,15 @@
 				padding: 20px;
 				border-radius: 10px;
 			}
-
 			.dress-code-text {
 				flex: 1;
 			}
-
 			.dress-code-image {
 				width: 150px;
 				height: 150px;
 				border-radius: 10px;
 				overflow: hidden;
 			}
-
 			.dress-code-image img {
 				width: 100%;
 				height: 100%;
@@ -87,23 +80,19 @@
 				border-radius: 10px;
 				margin: 15px 0;
 			}
-
 			.pix-presente {
 				text-align: center;
 				max-width: 400px;
 				margin: 0 auto;
 			}
-
 			.qr-code-container {
 				margin: 20px 0;
 			}
-
 			.qr-code-container img {
 				max-width: 250px;
 				border-radius: 10px;
 				box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 			}
-
 			.destaque-texto {
 				background: rgba(255,255,255,0.1);
 				padding: 15px;
@@ -111,34 +100,34 @@
 				margin: 20px 0;
 				border-left: 4px solid #ff6b6b;
 			}
-
 			/* Controles de música - MODIFICADO */
 			.music-player {
 				position: fixed;
 				bottom: 20px;
 				left: 20px; /* Alterado para esquerda */
 				z-index: 1000;
-				background: #ffffff; /* Fundo branco */
-				border-radius: 25px; /* Mais arredondado */
-				padding: 8px 12px; /* Menor padding */
-				box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-				width: auto;
+				background: #000000; /* Fundo preto */
+				border-radius: 10px;
+				padding: 10px 15px;
+				box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				min-width: 200px;
 			}
-
 			.music-controls {
 				display: flex;
 				align-items: center;
-				gap: 8px; /* Espaço menor entre botões */
+				gap: 8px;
 			}
-
 			.music-btn {
 				background: none;
 				border: none;
-				color: #000000; /* Ícones pretos */
-				font-size: 18px; /* Tamanho menor */
+				color: #ffffff; /* Ícones brancos */
+				font-size: 18px;
 				cursor: pointer;
-				width: 35px; /* Menor largura */
-				height: 35px; /* Menor altura */
+				width: 35px;
+				height: 35px;
 				border-radius: 50%;
 				display: flex;
 				align-items: center;
@@ -148,16 +137,17 @@
 			}
 
 			.music-btn:hover {
-				background: rgba(0,0,0,0.1); /* Fundo mais claro no hover */
+				background: rgba(255,255,255,0.2);
 			}
 
 			.music-info {
-				display: none;
-				color: white;
+				color: #ffffff;
 				font-size: 12px;
-				max-width: 200px;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				max-width: 150px;
 			}
-
 			/* Estilo para seções dos noivos */
 			.nossa-historia-section .image,
 			.local-section .image,
@@ -166,13 +156,37 @@
 				position: relative;
 				overflow: hidden;
 			}
-
 			/* Estilo para o título principal - MODIFICADO */
 			.banner .content h1 {
-				font-size: 2.5em; /* Tamanho reduzido */
+				font-size: 2.5em;
 				line-height: 1.2;
 				word-wrap: break-word;
 				hyphens: auto;
+			}
+			/* Estilo para data centralizada */
+			.data-centralizada {
+				text-align: center;
+				margin: 10px 0 20px 0;
+				font-size: 1.2em;
+			}
+
+			/* Estilo para seção Dress Code centralizada */
+			.dress-code-centralizado {
+				text-align: center;
+			}
+			.dress-code-centralizado .dress-code-examples {
+				align-items: center;
+			}
+			.dress-code-centralizado .dress-code-example {
+				flex-direction: column;
+				text-align: center;
+				max-width: 600px;
+				margin: 0 auto;
+			}
+
+			/* Remover ícones da seção Hospedagem */
+			.hospedagem-section h3::before {
+				content: none !important;
 			}
 
 			/* Responsividade */
@@ -181,66 +195,61 @@
 					flex-wrap: wrap;
 					gap: 10px;
 				}
-				
 				.contador-item {
 					min-width: 70px;
 					padding: 15px;
 				}
-				
 				.contador-item span {
 					font-size: 2em;
 				}
-
 				.dress-code-example {
 					flex-direction: column;
 					text-align: center;
 				}
-
 				.dress-code-image {
 					width: 120px;
 					height: 120px;
 				}
-
 				.music-player {
 					bottom: 10px;
-					left: 10px; /* Mantido à esquerda */
-					padding: 6px 10px;
+					left: 10px;
+					padding: 8px 12px;
+					min-width: 180px;
 				}
-
 				.music-btn {
 					width: 30px;
 					height: 30px;
 					font-size: 16px;
 				}
-
 				.music-info {
-					display: none !important;
+					font-size: 11px;
+					max-width: 120px;
 				}
-
-				/* Título principal responsivo */
 				.banner .content h1 {
 					font-size: 2em;
 				}
+				.data-centralizada {
+					font-size: 1.1em;
+				}
 			}
-
 			@media screen and (max-width: 480px) {
 				.dress-code-image {
 					width: 100px;
 					height: 100px;
 				}
-
 				.banner .content h1 {
 					font-size: 1.8em;
 				}
-			}
-
-			/* Estilos específicos para a seção Dress Code sem imagem */
-			.dress-code-section .image {
-				display: none; /* Remove a imagem da esquerda */
-			}
-
-			.dress-code-section .content {
-				width: 100%; /* Ocupa toda a largura disponível */
+				.data-centralizada {
+					font-size: 1em;
+				}
+				.music-player {
+					min-width: 160px;
+				}
+				.music-info {
+					font-size: 10px;
+					max-width: 100px;
+				}
 			}
 		</style>
 	</head>
@@ -249,25 +258,29 @@
 		<!-- Player de Música - MODIFICADO -->
 		<div class="music-player" id="musicPlayer">
 			<div class="music-controls">
-				<button class="music-btn" id="playBtn" title="Play/Pause">
+				<button class="music-btn" id="playBtn" title="Play">
 					▶️
 				</button>
 				<button class="music-btn" id="pauseBtn" title="Pausar" style="display: none;">
 					⏸️
 				</button>
 			</div>
+			<div class="music-info" id="musicInfo">
+				Perfect - Ed Sheeran
+			</div>
 		</div>
-
 		<!-- Wrapper -->
 			<div id="wrapper" class="divided">
-
+				
 				<!-- Sessão 1: Abertura com Countdown -->
 				<section class="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right">
 					<div class="content">
 						<h1>Ana Luiza & James Moreno</h1>
-						<p class="major">Temos a alegria de convidar você para celebrar conosco o início da nossa nova jornada</p>
-						<p><strong>16 de Janeiro de 2027 às 16:00 horas</strong></p>
-						
+						<p class="major">Temos a alegria de convidar você para celebrar conosco mais uma fase da nossa jornada</p>
+						<!-- Data centralizada com o contador -->
+						<div class="data-centralizada">
+							<p><strong>16 de Janeiro de 2027 às 16:00 horas</strong></p>
+						</div>
 						<!-- Contador Regressivo -->
 						<div id="contador-regressivo">
 							<div class="contador-item">
@@ -287,17 +300,15 @@
 								<p>Segundos</p>
 							</div>
 						</div>
-						
 						<p>Sua presença tornará este dia ainda mais especial!</p>
 						<ul class="actions stacked">
 							<li><a href="#nossa-historia" class="button big wide smooth-scroll-middle">Conheça Nossa História</a></li>
 						</ul>
 					</div>
 					<div class="image">
-						<img src="images/banner_1.jpg" alt="Ana Luiza e James Moreno - Foto principal do casal" />
+						<img src="images/banner_2.jpg" alt="Ana Luiza e James Moreno - Foto principal do casal" />
 					</div>
 				</section>
-
 				<!-- Sessão 2: Nossa História -->
 				<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in nossa-historia-section" id="nossa-historia">
 					<div class="content">
@@ -314,28 +325,24 @@
 						<img src="images/spotlight01_1.jpg" alt="Nossa história - Ana e James em um momento especial" />
 					</div>
 				</section>
-
 				<!-- Sessão 3: Local do Evento -->
 				<section class="spotlight style1 orient-left content-align-left image-position-center onscroll-image-fade-in local-section" id="local">
 					<div class="content">
 						<h2>Local do Casamento</h2>
-						
 						<p><strong>Data:</strong> 16 de Janeiro de 2027<br />
 						<strong>Horário:</strong> 16:00 horas</p>
 						
 						<p><strong>Casa Lucca Eventos</strong><br />
 						Praça Antônio Keller, 22, Piracicaba, Brazil 13415-020</p>
-						
+			
 						<p>Um espaço encantador que combina elegância e aconchego, perfeito para celebrar nosso amor.</p>
-						
 						<p>Siga o <a href="https://instagram.com/casaluccaeventos" target="_blank">@casaluccaeventos</a> no Instagram para conhecer melhor o local!</p>
-						
 						<!-- Mapa do Google -->
 						<div class="mapa-container">
 							<iframe 
 								src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3690.4884647864837!2d-47.64878882476387!3d-22.72525157946384!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c6319c6e46e5a5%3A0x709180949039c36f!2sPra%C3%A7a%20Ant%C3%B4nio%20Keller%2C%2022%20-%20Centro%2C%20Piracicaba%20-%20SP%2C%2013415-020!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" 
-								width="100%" 
-								height="100%" 
+								width="90%" 
+								height="90%" 
 								style="border:0;" 
 								allowfullscreen="" 
 								loading="lazy" 
@@ -348,7 +355,7 @@
 						</ul>
 					</div>
 					<div class="image">
-						<img src="images/spotlight02.jpg" alt="Casa Lucca Eventos - Local do casamento" />
+						<img src="images/spotlight02_1.jpg" alt="Casa Lucca Eventos - Local do casamento" />
 					</div>
 				</section>
 
@@ -358,7 +365,6 @@
 						<h2>Nossos Momentos Especiais</h2>
 						<p>Uma coleção de memórias que construímos juntos ao longo dessa linda jornada de amor.</p>
 					</div>
-
 					<!-- Gallery - Carrossel de Fotos -->
 					<div class="gallery style2 medium lightbox onscroll-fade-in">
 						<article>
@@ -470,36 +476,35 @@
 							</div>
 						</article>
 					</div>
-
-					<div class="inner" style="margin-top: 3rem;">
-						<ul class="actions stacked">
-							<!-- Botão DressCode removido -->
-							<li><a href="#dress-code" class="button smooth-scroll-middle">Ver Dress Code</a></li>
-						</ul>
-					</div>
 				</section>
 
-				<!-- Sessão 5: Dress Code -->
-				<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in dress-code-section" id="dress-code">
-					<div class="content">
+				<!-- Sessão 5: Dress Code - MODIFICADA -->
+				<section class="wrapper style1 align-center" id="dress-code">
+					<div class="inner dress-code-centralizado">
 						<h2>Dress Code</h2>
-						<p><strong>Elegância e Sofisticação</strong></p>
+						<p class="major"><strong>Elegância e Sofisticação</strong></p>
 						<p>Para tornar nosso dia ainda mais especial, sugerimos o seguinte dress code:</p>
 						
-						<!-- Exemplo feminino -->
-						<div class="dress-code-example">
-							<div class="dress-code-text">
-								<p><strong>Para elas:</strong> Vestidos longos ou midi em tons pasteis, champagne, azul claro ou verde água. Tecidos fluidos e elegantes.</p>
+						<div class="dress-code-examples">
+							<!-- Exemplo feminino -->
+							<div class="dress-code-example">
+								<div class="dress-code-image">
+									<img src="images/dress-code1.jpg" alt="Exemplo de vestido elegante para mulheres" />
+								</div>
+								<div class="dress-code-text">
+									<p><strong>Para elas:</strong> Vestidos longos ou midi em tons pasteis, champagne, azul claro ou verde água. Tecidos fluidos e elegantes.</p>
+								</div>
 							</div>
-							<!-- Imagem removida -->
-						</div>
-						
-						<!-- Exemplo masculino -->
-						<div class="dress-code-example">
-							<div class="dress-code-text">
-								<p><strong>Para eles:</strong> Terno escuro (preto, cinza ou azul marinho) ou social completo. Gravata opcional, mas bem-vinda!</p>
+							
+							<!-- Exemplo masculino -->
+							<div class="dress-code-example">
+								<div class="dress-code-image">
+									<img src="images/dress-code2.jpg" alt="Exemplo de terno elegante para homens" />
+								</div>
+								<div class="dress-code-text">
+									<p><strong>Para eles:</strong> Terno escuro (preto, cinza ou azul marinho) ou social completo. Gravata opcional, mas bem-vinda!</p>
+								</div>
 							</div>
-							<!-- Imagem removida -->
 						</div>
 
 						<!-- Texto em destaque -->
@@ -512,7 +517,6 @@
 							<li><a href="#presentes" class="button smooth-scroll-middle">Lista de Presentes</a></li>
 						</ul>
 					</div>
-					<!-- A div da imagem foi removida da estrutura HTML -->
 				</section>
 
 				<!-- Sessão 6: Presentes -->
@@ -534,18 +538,18 @@
 						</div>
 						
 						<ul class="actions stacked">
-							<li><a href="#hospedagem" class="button smooth-scroll-middle">Dicas de Hospedagem</a></li>
+							<li><a href="#hospedagem" class="button smooth-scroll-middle">Hospedagem e Dicas</a></li>
 						</ul>
 					</div>
 				</section>
 
-				<!-- Sessão 7: Hospedagem e Turismo -->
+				<!-- Sessão 7: Hospedagem e Turismo - MODIFICADA -->
 				<section class="spotlight style1 orient-left content-align-left image-position-center onscroll-image-fade-in hospedagem-section" id="hospedagem">
 					<div class="content">
-						<h2>Hospedagem & Dicas Turísticas</h2>
+						<h2>Hospedagem e Dicas</h2>
 						<p>Para os convidados que virão de outras cidades, separamos algumas sugestões de hospedagem e lugares para conhecer em Piracicaba:</p>
 						
-						<h3>🏨 Sugestões de Hotéis</h3>
+						<h3>Sugestões de Hotéis</h3>
 						<div class="hotel-card">
 							<h4>Hotel Royal</h4>
 							<p>📍 Centro - Próximo ao local do casamento<br />
@@ -567,7 +571,7 @@
 							💵 Diárias a partir de R$ 220</p>
 						</div>
 						
-						<h3>🌟 O Que Fazer em Piracicaba</h3>
+						<h3>O Que Fazer em Piracicaba</h3>
 						<ul>
 							<li><strong>Rua do Porto:</strong> Passeio à beira do rio com restaurantes e bares</li>
 							<li><strong>Engenho Central:</strong> Complexo cultural com museus e espaços de arte</li>
@@ -631,7 +635,6 @@
 						</form>
 					</div>
 				</section>
-
 				<!-- Footer - MODIFICADO -->
 				<footer class="wrapper style1 align-center">
 					<div class="inner">
@@ -646,7 +649,7 @@
 							<!-- Ícone de email -->
 							<li><a href="mailto:jamesunifei@gmail.com" class="icon style2 fa-envelope"><span class="label">Email</span></a></li>
 						</ul>
-						
+			
 						<p>&copy; Ana Luiza & James Moreno 2027. Template: <a href="https://html5up.net">HTML5 UP</a>.</p>
 					</div>
 				</footer>
@@ -709,6 +712,7 @@
 				const musicPlayer = document.getElementById('musicPlayer');
 				const playBtn = document.getElementById('playBtn');
 				const pauseBtn = document.getElementById('pauseBtn');
+				const musicInfo = document.getElementById('musicInfo');
 				
 				let audio = null;
 				let isPlaying = false;
@@ -746,58 +750,4 @@
 					} else {
 						audio.play().catch(function(error) {
 							console.log('Erro ao reproduzir música:', error);
-							// Se houver erro, tenta com uma música online de exemplo
-							audio.src = 'https://assets.mixkit.co/music/preview/mixkit-loving-you-117.mp3';
-							audio.play();
-						});
-					}
-				}
-				
-				// Função para pausar música
-				function pauseMusic() {
-					if (audio && isPlaying) {
-						audio.pause();
-					}
-				}
-				
-				// Event listeners para os botões
-				if (playBtn) {
-					playBtn.addEventListener('click', playMusic);
-				}
-				
-				if (pauseBtn) {
-					pauseBtn.addEventListener('click', pauseMusic);
-				}
-				
-				// Controle por teclado (espaço para play/pause)
-				document.addEventListener('keydown', function(event) {
-					if (event.code === 'Space' && audio) {
-						event.preventDefault();
-						playMusic();
-					}
-				});
-				
-				// Validação do formulário
-				const form = document.querySelector('form');
-				if (form) {
-					form.addEventListener('submit', function(e) {
-						const presenca = document.getElementById('presenca');
-						if (!presenca || !presenca.value) {
-							e.preventDefault();
-							alert('Por favor, confirme se poderá comparecer ou não.');
-							return false;
-						}
-						
-						// Simulação de envio (substituir por código real)
-						e.preventDefault();
-						alert('Obrigado por confirmar sua presença! Em breve entraremos em contato.');
-						this.reset();
-					});
-				}
-				
-				console.log('Site carregado com sucesso! Contador e música ativos.');
-			});
-		</script>
-
-	</body>
-</html>
+							// Se houver erro, tenta com uma música online
