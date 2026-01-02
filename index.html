@@ -76,10 +76,20 @@
 
 			.hotel-card {
 				background: rgba(255,255,255,0.05);
-				padding: 20px;
+				padding: 10px 15px; /* Reduzido o padding */
 				border-radius: 10px;
-				margin: 15px 0;
+				margin: 5px 0; /* Reduzido o margin */
+				line-height: 1.3; /* Reduz o espaçamento entre linhas */
 			}
+			
+			.hotel-card h4 {
+				margin-bottom: 5px; /* Reduz espaço abaixo do título */
+			}
+			
+			.hotel-card p {
+				margin: 3px 0; /* Reduz espaço entre linhas do parágrafo */
+			}
+			
 			.pix-presente {
 				text-align: center;
 				max-width: 400px;
@@ -100,11 +110,11 @@
 				margin: 20px 0;
 				border-left: 4px solid #ff6b6b;
 			}
-			/* Controles de música - MODIFICADO */
+			/* Controles de música - MODIFICADO para direita */
 			.music-player {
 				position: fixed;
 				bottom: 20px;
-				left: 20px; /* Alterado para esquerda */
+				right: 20px; /* Alterado para direita */
 				z-index: 1000;
 				background: #000000; /* Fundo preto */
 				border-radius: 10px;
@@ -148,21 +158,37 @@
 				text-overflow: ellipsis;
 				max-width: 150px;
 			}
-			/* Estilo para seções dos noivos */
-			.nossa-historia-section .image,
-			.local-section .image,
-			.dress-code-section .image,
-			.hospedagem-section .image {
-				position: relative;
-				overflow: hidden;
+			
+			/* Estilo para centralizar conteúdo na primeira seção */
+			.banner .content {
+				text-align: center; /* Centraliza todo o texto */
+				display: flex;
+				flex-direction: column;
+				align-items: center;
 			}
-			/* Estilo para o título principal - MODIFICADO */
+			
 			.banner .content h1 {
 				font-size: 2.5em;
 				line-height: 1.2;
 				word-wrap: break-word;
 				hyphens: auto;
+				text-align: center; /* Centraliza o título */
 			}
+			
+			.banner .content p.major {
+				text-align: center; /* Centraliza o parágrafo principal */
+			}
+			
+			.banner .content p:not(.major) {
+				text-align: center; /* Centraliza outros parágrafos */
+			}
+			
+			.banner .actions.stacked {
+				display: flex;
+				justify-content: center; /* Centraliza o botão */
+				width: 100%;
+			}
+			
 			/* Estilo para data centralizada */
 			.data-centralizada {
 				text-align: center;
@@ -183,10 +209,27 @@
 				max-width: 600px;
 				margin: 0 auto;
 			}
-
+			
+			/* Linha horizontal entre seções */
+			.separador-secao {
+				width: 100%;
+				height: 1px;
+				background: rgba(255,255,255,0.2);
+				margin: 40px 0;
+			}
+			
 			/* Remover ícones da seção Hospedagem */
 			.hospedagem-section h3::before {
 				content: none !important;
+			}
+			
+			/* Ajuste para lista de "O que fazer" com a dica embaixo */
+			.hospedagem-section ul {
+				margin-bottom: 10px; /* Reduz espaço abaixo da lista */
+			}
+			
+			.hospedagem-section p {
+				margin-top: 10px; /* Adiciona espaço acima do parágrafo */
 			}
 
 			/* Responsividade */
@@ -212,7 +255,7 @@
 				}
 				.music-player {
 					bottom: 10px;
-					left: 10px;
+					right: 10px;
 					padding: 8px 12px;
 					min-width: 180px;
 				}
@@ -255,14 +298,14 @@
 	</head>
 	<body class="is-preload">
 
-		<!-- Player de Música - MODIFICADO -->
+		<!-- Player de Música - MODIFICADO (lado direito) -->
 		<div class="music-player" id="musicPlayer">
 			<div class="music-controls">
 				<button class="music-btn" id="playBtn" title="Play">
 					▶️
 				</button>
-				<button class="music-btn" id="pauseBtn" title="Pausar" style="display: none;">
-					⏸️
+				<button class="music-btn" id="stopBtn" title="Parar">
+					⏹️
 				</button>
 			</div>
 			<div class="music-info" id="musicInfo">
@@ -476,6 +519,9 @@
 							</div>
 						</article>
 					</div>
+					
+					<!-- Linha horizontal entre seções -->
+					<div class="separador-secao"></div>
 				</section>
 
 				<!-- Sessão 5: Dress Code - MODIFICADA -->
@@ -514,15 +560,15 @@
 						</div>
 						
 						<ul class="actions stacked">
-							<li><a href="#presentes" class="button smooth-scroll-middle">Lista de Presentes</a></li>
+							<li><a href="#presentes" class="button smooth-scroll-middle">Presente para os Noivos</a></li>
 						</ul>
 					</div>
 				</section>
 
-				<!-- Sessão 6: Presentes -->
+				<!-- Sessão 6: Presentes - MODIFICADA -->
 				<section class="wrapper style1 align-center" id="presentes">
 					<div class="inner">
-						<h2>Lista de Presentes</h2>
+						<h2>Presente para os Noivos</h2>
 						<p class="major">Sua presença é o nosso maior presente! Mas se desejar nos presentear, ficaremos muito felizes.</p>
 						
 						<div class="pix-presente">
@@ -532,7 +578,7 @@
 							<p><strong>Faça sua contribuição via PIX</strong></p>
 							<p>Escaneie o QR Code acima ou use a chave PIX:</p>
 							<p style="word-break: break-all; background: rgba(255,255,255,0.1); padding: 10px; border-radius: 5px;">
-								casamento.ana.james@email.com
+								CPF: 397.079.908-21 - James Andrade Moreno Jr
 							</p>
 							<p><em>Todos os presentes serão muito bem-vindos e recebidos com muito carinho!</em></p>
 						</div>
@@ -579,7 +625,6 @@
 							<li><strong>Museu da Água:</strong> Conheça a história da cidade</li>
 							<li><strong>Ponte Pênsil:</strong> Cartão postal da cidade</li>
 						</ul>
-						
 						<p><strong>Dica:</strong> Reserve com antecedência, pois janeiro é alta temporada em Piracicaba!</p>
 						
 						<ul class="actions stacked">
@@ -669,11 +714,12 @@
 			// AGUARDAR O DOCUMENTO CARREGAR COMPLETAMENTE
 			document.addEventListener('DOMContentLoaded', function() {
 				
-				// Contador Regressivo para 16 de Janeiro de 2027 às 16:00
+				// Contador Regressivo para 16 de Janeiro de 2027 às 16:00 - CORRIGIDO
 				function atualizarContador() {
-					const dataCasamento = new Date('January 16, 2027 16:00:00').getTime();
-					const agora = new Date().getTime();
-					const diferenca = dataCasamento - agora;
+					// Data do casamento: 16 de Janeiro de 2027 às 16:00
+					const dataCasamento = new Date(2027, 0, 16, 16, 0, 0); // Janeiro é 0 (0-11)
+					const agora = new Date();
+					const diferenca = dataCasamento.getTime() - agora.getTime();
 					
 					// Verificar se os elementos existem
 					const diasElement = document.getElementById('dias');
@@ -711,7 +757,7 @@
 				// Sistema de Música - MODIFICADO
 				const musicPlayer = document.getElementById('musicPlayer');
 				const playBtn = document.getElementById('playBtn');
-				const pauseBtn = document.getElementById('pauseBtn');
+				const stopBtn = document.getElementById('stopBtn');
 				const musicInfo = document.getElementById('musicInfo');
 				
 				let audio = null;
@@ -728,20 +774,20 @@
 						// Eventos do áudio
 						audio.addEventListener('play', function() {
 							isPlaying = true;
-							playBtn.style.display = 'none';
-							pauseBtn.style.display = 'flex';
+							playBtn.innerHTML = '⏸️'; // Muda para ícone de pause
+							musicInfo.textContent = 'Perfect - Ed Sheeran (Tocando)';
 						});
 						
 						audio.addEventListener('pause', function() {
 							isPlaying = false;
-							playBtn.style.display = 'flex';
-							pauseBtn.style.display = 'none';
+							playBtn.innerHTML = '▶️'; // Volta para ícone de play
+							musicInfo.textContent = 'Perfect - Ed Sheeran (Pausado)';
 						});
 						
 						audio.addEventListener('ended', function() {
 							isPlaying = false;
-							playBtn.style.display = 'flex';
-							pauseBtn.style.display = 'none';
+							playBtn.innerHTML = '▶️';
+							musicInfo.textContent = 'Perfect - Ed Sheeran';
 						});
 					}
 					
@@ -750,4 +796,62 @@
 					} else {
 						audio.play().catch(function(error) {
 							console.log('Erro ao reproduzir música:', error);
-							// Se houver erro, tenta com uma música online
+							// Se houver erro, tenta com uma música online de exemplo
+							audio.src = 'https://assets.mixkit.co/music/preview/mixkit-loving-you-117.mp3';
+							audio.play();
+						});
+					}
+				}
+				
+				// Função para parar música completamente
+				function stopMusic() {
+					if (audio) {
+						audio.pause();
+						audio.currentTime = 0;
+						isPlaying = false;
+						playBtn.innerHTML = '▶️';
+						musicInfo.textContent = 'Perfect - Ed Sheeran';
+					}
+				}
+				
+				// Event listeners para os botões
+				if (playBtn) {
+					playBtn.addEventListener('click', playMusic);
+				}
+				
+				if (stopBtn) {
+					stopBtn.addEventListener('click', stopMusic);
+				}
+				
+				// Controle por teclado (espaço para play/pause)
+				document.addEventListener('keydown', function(event) {
+					if (event.code === 'Space' && audio) {
+						event.preventDefault();
+						playMusic();
+					}
+				});
+				
+				// Validação do formulário
+				const form = document.querySelector('form');
+				if (form) {
+					form.addEventListener('submit', function(e) {
+						const presenca = document.getElementById('presenca');
+						if (!presenca || !presenca.value) {
+							e.preventDefault();
+							alert('Por favor, confirme se poderá comparecer ou não.');
+							return false;
+						}
+						
+						// Simulação de envio (substituir por código real)
+						e.preventDefault();
+						alert('Obrigado por confirmar sua presença! Em breve entraremos em contato.');
+						this.reset();
+					});
+				}
+				
+				console.log('Site carregado com sucesso! Contador e música ativos.');
+			});
+		</script>
+
+	</body>
+</html>
