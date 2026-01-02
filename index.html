@@ -386,10 +386,10 @@
 				<section class="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right">
 					<div class="content">
 						<h1>Ana Luiza e James Jr</h1>
-						<p class="major">Temos a alegria de convidar você para celebrar conosco mais uma fase da nossa jornada.</p>
+						<p class="major">Temos a alegria de convidar você para celebrar conosco mais uma fase da nossa jornada!</p>
 						<!-- Data centralizada com o contador -->
 						<div class="data-centralizada">
-							<p><strong>16 de Janeiro de 2027 às 16:00 horas.</strong></p>
+							<p><strong>16 de Janeiro de 2027 às 16:00 horas</strong></p>
 						</div>
 						<!-- Contador Regressivo -->
 						<div id="contador-regressivo">
@@ -835,7 +835,7 @@
 				function playMusic() {
 					if (!audio) {
 						// Criar elemento de áudio
-						audio = new Audio('assets/music/nossa-musica.mp3'); // Altere para o caminho da sua música
+						audio = new Audio('assets/music/you_look_like_you_love_me.mp3'); // Altere para o caminho da sua música
 						audio.loop = true;
 						audio.volume = 0.5; // Volume em 50%
 						
@@ -843,19 +843,19 @@
 						audio.addEventListener('play', function() {
 							isPlaying = true;
 							playBtn.innerHTML = '⏸️'; // Muda para ícone de pause
-							musicInfo.textContent = 'Perfect - Ed Sheeran (Tocando)';
+							musicInfo.textContent = 'You look like you love me(playing)';
 						});
 						
 						audio.addEventListener('pause', function() {
 							isPlaying = false;
 							playBtn.innerHTML = '▶️'; // Volta para ícone de play
-							musicInfo.textContent = 'Perfect - Ed Sheeran';
+							musicInfo.textContent = 'You look like you love me(pause)';
 						});
 						
 						audio.addEventListener('ended', function() {
 							isPlaying = false;
 							playBtn.innerHTML = '▶️';
-							musicInfo.textContent = 'Perfect - Ed Sheeran';
+							musicInfo.textContent = 'You look like you love me(playing)';
 						});
 					}
 					
@@ -878,7 +878,7 @@
 						audio.currentTime = 0;
 						isPlaying = false;
 						playBtn.innerHTML = '▶️';
-						musicInfo.textContent = 'Perfect - Ed Sheeran';
+						musicInfo.textContent = 'You look like you love me(playing)';
 					}
 				}
 				
@@ -923,7 +923,3 @@
 
 	</body>
 </html>
-
-
-
-
