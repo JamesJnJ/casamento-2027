@@ -94,50 +94,73 @@
 				text-align: center;
 				max-width: 400px;
 				margin: 0 auto;
+				padding: 10px 0; /* Reduzido padding vertical */
 			}
+			
+			/* Estilo para seção compacta */
+			.secao-compacta {
+				padding: 30px 0 !important; /* Reduz padding vertical */
+			}
+			
+			.secao-compacta .inner {
+				padding-top: 10px !important;
+				padding-bottom: 10px !important;
+			}
+			
+			.secao-compacta h2 {
+				margin-bottom: 15px !important; /* Reduz espaço abaixo do título */
+			}
+			
+			.secao-compacta p.major {
+				margin-bottom: 20px !important; /* Reduz espaço abaixo do texto principal */
+			}
+			
 			.qr-code-container {
-				margin: 20px 0;
+				margin: 15px 0; /* Reduzido */
 			}
 			.qr-code-container img {
-				max-width: 250px;
+				max-width: 200px; /* Reduzido de 250px */
 				border-radius: 10px;
 				box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 			}
 			.destaque-texto {
 				background: rgba(255,255,255,0.1);
-				padding: 15px;
+				padding: 12px; /* Reduzido de 15px */
 				border-radius: 10px;
-				margin: 20px 0;
+				margin: 15px 0; /* Reduzido de 20px */
 				border-left: 4px solid #ff6b6b;
+				font-size: 0.9em; /* Texto um pouco menor */
 			}
-			/* Controles de música - MODIFICADO para direita */
+			
+			/* Controles de música - MODIFICADO para menor e fundo branco */
 			.music-player {
 				position: fixed;
-				bottom: 20px;
-				right: 20px; /* Alterado para direita */
+				bottom: 15px;
+				right: 15px;
 				z-index: 1000;
-				background: #000000; /* Fundo preto */
-				border-radius: 10px;
-				padding: 10px 15px;
-				box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+				background: #ffffff; /* Fundo branco */
+				border-radius: 8px; /* Mais arredondado */
+				padding: 6px 10px; /* Menor padding */
+				box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 				display: flex;
 				align-items: center;
-				gap: 10px;
-				min-width: 200px;
+				gap: 6px;
+				min-width: 160px; /* Menor largura */
+				max-width: 160px;
 			}
 			.music-controls {
 				display: flex;
 				align-items: center;
-				gap: 8px;
+				gap: 5px;
 			}
 			.music-btn {
 				background: none;
 				border: none;
-				color: #ffffff; /* Ícones brancos */
-				font-size: 18px;
+				color: #000000; /* Ícones pretos */
+				font-size: 14px; /* Menor */
 				cursor: pointer;
-				width: 35px;
-				height: 35px;
+				width: 28px; /* Menor */
+				height: 28px; /* Menor */
 				border-radius: 50%;
 				display: flex;
 				align-items: center;
@@ -147,16 +170,17 @@
 			}
 
 			.music-btn:hover {
-				background: rgba(255,255,255,0.2);
+				background: rgba(0,0,0,0.1); /* Fundo mais escuro no hover */
 			}
 
 			.music-info {
-				color: #ffffff;
-				font-size: 12px;
+				color: #333333; /* Texto mais escuro */
+				font-size: 10px; /* Menor */
 				white-space: nowrap;
 				overflow: hidden;
 				text-overflow: ellipsis;
-				max-width: 150px;
+				max-width: 100px; /* Menor */
+				font-weight: 500;
 			}
 			
 			/* Estilo para centralizar conteúdo na primeira seção */
@@ -215,7 +239,42 @@
 				width: 100%;
 				height: 1px;
 				background: rgba(255,255,255,0.2);
-				margin: 40px 0;
+				margin: 30px 0; /* Reduzido de 40px */
+			}
+			
+			/* Estilo para formulário compacto */
+			.formulario-compacto .inner.medium {
+				padding-top: 20px !important;
+				padding-bottom: 20px !important;
+			}
+			
+			.formulario-compacto h2 {
+				margin-bottom: 15px !important;
+			}
+			
+			.formulario-compacto p {
+				margin-bottom: 20px !important;
+			}
+			
+			/* Footer compacto */
+			.footer-compacto {
+				padding: 30px 0 !important;
+			}
+			
+			.footer-compacto .inner {
+				padding: 15px 0 !important;
+			}
+			
+			.footer-compacto h3 {
+				margin-bottom: 10px !important;
+			}
+			
+			.footer-compacto p {
+				margin: 8px 0 !important;
+			}
+			
+			.footer-compacto .icons {
+				margin: 15px 0 !important;
 			}
 			
 			/* Remover ícones da seção Hospedagem */
@@ -256,23 +315,27 @@
 				.music-player {
 					bottom: 10px;
 					right: 10px;
-					padding: 8px 12px;
-					min-width: 180px;
+					padding: 5px 8px;
+					min-width: 140px;
+					max-width: 140px;
 				}
 				.music-btn {
-					width: 30px;
-					height: 30px;
-					font-size: 16px;
+					width: 24px;
+					height: 24px;
+					font-size: 12px;
 				}
 				.music-info {
-					font-size: 11px;
-					max-width: 120px;
+					font-size: 9px;
+					max-width: 85px;
 				}
 				.banner .content h1 {
 					font-size: 2em;
 				}
 				.data-centralizada {
 					font-size: 1.1em;
+				}
+				.qr-code-container img {
+					max-width: 180px;
 				}
 			}
 			@media screen and (max-width: 480px) {
@@ -287,18 +350,22 @@
 					font-size: 1em;
 				}
 				.music-player {
-					min-width: 160px;
+					min-width: 130px;
+					max-width: 130px;
 				}
 				.music-info {
-					font-size: 10px;
-					max-width: 100px;
+					font-size: 8px;
+					max-width: 75px;
+				}
+				.qr-code-container img {
+					max-width: 160px;
 				}
 			}
 		</style>
 	</head>
 	<body class="is-preload">
 
-		<!-- Player de Música - MODIFICADO (lado direito) -->
+		<!-- Player de Música - MODIFICADO (menor e fundo branco) -->
 		<div class="music-player" id="musicPlayer">
 			<div class="music-controls">
 				<button class="music-btn" id="playBtn" title="Play">
@@ -412,7 +479,7 @@
 					<div class="gallery style2 medium lightbox onscroll-fade-in">
 						<article>
 							<a href="images/gallery/fulls/01.jpg" class="image">
-								<img src="images/gallery/thumbs/01.jpg" alt="Primeiro encontro do casal" />
+								<img src="images/gallery/thumbs/01_1.jpg" alt="Primeiro encontro do casal" />
 							</a>
 							<div class="caption">
 								<h3>Nosso Primeiro Encontro</h3>
@@ -421,7 +488,7 @@
 						</article>
 						<article>
 							<a href="images/gallery/fulls/02.jpg" class="image">
-								<img src="images/gallery/thumbs/02.jpg" alt="Primeira viagem juntos" />
+								<img src="images/gallery/thumbs/02_1.jpg" alt="Primeira viagem juntos" />
 							</a>
 							<div class="caption">
 								<h3>Primeira Viagem</h3>
@@ -430,7 +497,7 @@
 						</article>
 						<article>
 							<a href="images/gallery/fulls/03.jpg" class="image">
-								<img src="images/gallery/thumbs/03.jpg" alt="Pedido de casamento" />
+								<img src="images/gallery/thumbs/03_1.jpg" alt="Pedido de casamento" />
 							</a>
 							<div class="caption">
 								<h3>O Pedido</h3>
@@ -439,7 +506,7 @@
 						</article>
 						<article>
 							<a href="images/gallery/fulls/04.jpg" class="image">
-								<img src="images/gallery/thumbs/04.jpg" alt="Encontro das famílias" />
+								<img src="images/gallery/thumbs/04_1.jpg" alt="Encontro das famílias" />
 							</a>
 							<div class="caption">
 								<h3>Famílias Unidas</h3>
@@ -448,7 +515,7 @@
 						</article>
 						<article>
 							<a href="images/gallery/fulls/05.jpg" class="image">
-								<img src="images/gallery/thumbs/05.jpg" alt="Ensaio pré-casamento" />
+								<img src="images/gallery/thumbs/05_1.jpg" alt="Ensaio pré-casamento" />
 							</a>
 							<div class="caption">
 								<h3>Ensaio Pré-Casamento</h3>
@@ -457,7 +524,7 @@
 						</article>
 						<article>
 							<a href="images/gallery/fulls/06.jpg" class="image">
-								<img src="images/gallery/thumbs/06.jpg" alt="Momento descontraído" />
+								<img src="images/gallery/thumbs/06_1.jpg" alt="Momento descontraído" />
 							</a>
 							<div class="caption">
 								<h3>Risadas e Alegria</h3>
@@ -466,7 +533,7 @@
 						</article>
 						<article>
 							<a href="images/gallery/fulls/07.jpg" class="image">
-								<img src="images/gallery/thumbs/07.jpg" alt="Viagem romântica" />
+								<img src="images/gallery/thumbs/07_1.jpg" alt="Viagem romântica" />
 							</a>
 							<div class="caption">
 								<h3>Viagem Romântica</h3>
@@ -475,7 +542,7 @@
 						</article>
 						<article>
 							<a href="images/gallery/fulls/08.jpg" class="image">
-								<img src="images/gallery/thumbs/08.jpg" alt="Celebração especial" />
+								<img src="images/gallery/thumbs/08_1.jpg" alt="Celebração especial" />
 							</a>
 							<div class="caption">
 								<h3>Celebração de Namoro</h3>
@@ -484,7 +551,7 @@
 						</article>
 						<article>
 							<a href="images/gallery/fulls/09.jpg" class="image">
-								<img src="images/gallery/thumbs/09.jpg" alt="Momento casual" />
+								<img src="images/gallery/thumbs/09_1.jpg" alt="Momento casual" />
 							</a>
 							<div class="caption">
 								<h3>Dias Comuns, Amor Extraordinário</h3>
@@ -493,7 +560,7 @@
 						</article>
 						<article>
 							<a href="images/gallery/fulls/10.jpg" class="image">
-								<img src="images/gallery/thumbs/10.jpg" alt="Preparativos do casamento" />
+								<img src="images/gallery/thumbs/10_1.jpg" alt="Preparativos do casamento" />
 							</a>
 							<div class="caption">
 								<h3>Preparativos</h3>
@@ -502,7 +569,7 @@
 						</article>
 						<article>
 							<a href="images/gallery/fulls/11.jpg" class="image">
-								<img src="images/gallery/thumbs/11.jpg" alt="Momento íntimo" />
+								<img src="images/gallery/thumbs/11_1.jpg" alt="Momento íntimo" />
 							</a>
 							<div class="caption">
 								<h3>Olhares Que Falam</h3>
@@ -511,7 +578,7 @@
 						</article>
 						<article>
 							<a href="images/gallery/fulls/12.jpg" class="image">
-								<img src="images/gallery/thumbs/12.jpg" alt="Futuro promissor" />
+								<img src="images/gallery/thumbs/12_1.jpg" alt="Futuro promissor" />
 							</a>
 							<div class="caption">
 								<h3>Rumo ao Futuro</h3>
@@ -565,8 +632,8 @@
 					</div>
 				</section>
 
-				<!-- Sessão 6: Presentes - MODIFICADA -->
-				<section class="wrapper style1 align-center" id="presentes">
+				<!-- Sessão 6: Presentes - MODIFICADA (seção compacta) -->
+				<section class="wrapper style1 align-center secao-compacta" id="presentes">
 					<div class="inner">
 						<h2>Presente para os Noivos</h2>
 						<p class="major">Sua presença é o nosso maior presente! Mas se desejar nos presentear, ficaremos muito felizes.</p>
@@ -577,13 +644,13 @@
 							</div>
 							<p><strong>Faça sua contribuição via PIX</strong></p>
 							<p>Escaneie o QR Code acima ou use a chave PIX:</p>
-							<p style="word-break: break-all; background: rgba(255,255,255,0.1); padding: 10px; border-radius: 5px;">
+							<p style="word-break: break-all; background: rgba(255,255,255,0.1); padding: 8px; border-radius: 5px; font-size: 0.9em; margin: 10px 0;">
 								CPF: 397.079.908-21 - James Andrade Moreno Jr
 							</p>
-							<p><em>Todos os presentes serão muito bem-vindos e recebidos com muito carinho!</em></p>
+							<p style="font-size: 0.9em; margin-top: 10px;"><em>Todos os presentes serão muito bem-vindos e recebidos com muito carinho!</em></p>
 						</div>
 						
-						<ul class="actions stacked">
+						<ul class="actions stacked" style="margin-top: 20px;">
 							<li><a href="#hospedagem" class="button smooth-scroll-middle">Hospedagem e Dicas</a></li>
 						</ul>
 					</div>
@@ -627,7 +694,7 @@
 						</ul>
 						<p><strong>Dica:</strong> Reserve com antecedência, pois janeiro é alta temporada em Piracicaba!</p>
 						
-						<ul class="actions stacked">
+						<ul class="actions stacked" style="margin-top: 20px;">
 							<li><a href="#confirmacao" class="button smooth-scroll-middle">Confirmar Presença</a></li>
 						</ul>
 					</div>
@@ -636,8 +703,8 @@
 					</div>
 				</section>
 
-				<!-- Sessão 8: Confirmação de Presença -->
-				<section class="wrapper style1 align-center" id="confirmacao">
+				<!-- Sessão 8: Confirmação de Presença - MODIFICADA (formulário compacto) -->
+				<section class="wrapper style1 align-center formulario-compacto" id="confirmacao">
 					<div class="inner medium">
 						<h2>Confirme Sua Presença</h2>
 						<p>Por favor, confirme sua presença até <strong>05 de Janeiro de 2027</strong></p>
@@ -671,17 +738,18 @@
 								</div>
 								<div class="field">
 									<label for="message">Mensagem para os noivos (opcional)</label>
-									<textarea name="message" id="message" rows="4" placeholder="Deixe uma mensagem especial para nós..."></textarea>
+									<textarea name="message" id="message" rows="3" placeholder="Deixe uma mensagem especial para nós..."></textarea>
 								</div>
 							</div>
-							<ul class="actions special">
+							<ul class="actions special" style="margin-top: 15px;">
 								<li><input type="submit" name="submit" id="submit" value="Confirmar Presença" /></li>
 							</ul>
 						</form>
 					</div>
 				</section>
-				<!-- Footer - MODIFICADO -->
-				<footer class="wrapper style1 align-center">
+				
+				<!-- Footer - MODIFICADO (footer compacto) -->
+				<footer class="wrapper style1 align-center footer-compacto">
 					<div class="inner">
 						<h3>Ana Luiza & James Moreno</h3>
 						<p>Com amor, gratidão e muita alegria no coração<br />
@@ -695,7 +763,7 @@
 							<li><a href="mailto:jamesunifei@gmail.com" class="icon style2 fa-envelope"><span class="label">Email</span></a></li>
 						</ul>
 			
-						<p>&copy; Ana Luiza & James Moreno 2027. Template: <a href="https://html5up.net">HTML5 UP</a>.</p>
+						<p style="font-size: 0.9em;">&copy; Ana Luiza & James Moreno 2027. Template: <a href="https://html5up.net">HTML5 UP</a>.</p>
 					</div>
 				</footer>
 
@@ -781,7 +849,7 @@
 						audio.addEventListener('pause', function() {
 							isPlaying = false;
 							playBtn.innerHTML = '▶️'; // Volta para ícone de play
-							musicInfo.textContent = 'Perfect - Ed Sheeran (Pausado)';
+							musicInfo.textContent = 'Perfect - Ed Sheeran';
 						});
 						
 						audio.addEventListener('ended', function() {
