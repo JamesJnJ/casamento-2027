@@ -368,7 +368,10 @@
 		<!-- Player de Música - MODIFICADO (menor e fundo branco) -->
 		<div class="music-player" id="musicPlayer">
 			<div class="music-controls">
-				<button class="music-btn" id="playBtn" title="Play">
+				<button class="music-btn" id="pauseBtn" title="Pausar">
+					⏸️
+				</button>
+				<button class="music-btn" id="playBtn" title="Play" style="display: none;">
 					▶️
 				</button>
 				<button class="music-btn" id="stopBtn" title="Parar">
@@ -376,7 +379,7 @@
 				</button>
 			</div>
 			<div class="music-info" id="musicInfo">
-				Music
+				Tocando...
 			</div>
 		</div>
 		<!-- Wrapper -->
@@ -823,52 +826,81 @@
 				// Atualizar contador a cada segundo
 				setInterval(atualizarContador, 1000);
 				
-				// Sistema de Música - MODIFICADO
+				// Sistema de Música - MODIFICADO (inicia automaticamente)
 				const musicPlayer = document.getElementById('musicPlayer');
 				const playBtn = document.getElementById('playBtn');
+				const pauseBtn = document.getElementById('pauseBtn');
 				const stopBtn = document.getElementById('stopBtn');
 				const musicInfo = document.getElementById('musicInfo');
 				
 				let audio = null;
 				let isPlaying = false;
 				
-				// Função para tocar música
-				function playMusic() {
+				// Função para inicializar e tocar música automaticamente
+				function initAndPlayMusic() {
 					if (!audio) {
 						// Criar elemento de áudio
-						audio = new Audio('assets/music/you_look_like_you_love_me.mp3'); // Altere para o caminho da sua música
+						audio = new Audio('assets/music/you_look_like_you_love_me.mp3');
 						audio.loop = true;
-						audio.volume = 0.5; // Volume em 50%
+						audio.volume = 0.3; // Volume um pouco mais baixo para início automático
+						audio.preload = 'auto'; // Pré-carrega a música
 						
-						// Eventos do áudio
+						// Configurar eventos do áudio
 						audio.addEventListener('play', function() {
 							isPlaying = true;
-							playBtn.innerHTML = '⏸️'; // Muda para ícone de pause
-							musicInfo.textContent = 'Music';
+							playBtn.style.display = 'none';
+							pauseBtn.style.display = 'flex';
+							musicInfo.textContent = 'Tocando...';
 						});
 						
 						audio.addEventListener('pause', function() {
 							isPlaying = false;
-							playBtn.innerHTML = '▶️'; // Volta para ícone de play
-							musicInfo.textContent = 'Music';
+							playBtn.style.display = 'flex';
+							pauseBtn.style.display = 'none';
+							musicInfo.textContent = 'Pausado';
 						});
 						
 						audio.addEventListener('ended', function() {
 							isPlaying = false;
-							playBtn.innerHTML = '▶️';
-							musicInfo.textContent = 'Music';
+							playBtn.style.display = 'flex';
+							pauseBtn.style.display = 'none';
+							musicInfo.textContent = 'Finalizado';
+						});
+						
+						audio.addEventListener('error', function(error) {
+							console.log('Erro ao carregar música:', error);
+							musicInfo.textContent = 'Erro ao carregar';
+							playBtn.style.display = 'flex';
+							pauseBtn.style.display = 'none';
 						});
 					}
 					
-					if (isPlaying) {
-						audio.pause();
-					} else {
-						audio.play().catch(function(error) {
-							console.log('Erro ao reproduzir música:', error);
-							// Se houver erro, tenta com uma música online de exemplo
-							audio.src = 'https://assets.mixkit.co/music/preview/mixkit-loving-you-117.mp3';
-							audio.play();
+					// Tentar tocar imediatamente
+					const playPromise = audio.play();
+					
+					if (playPromise !== undefined) {
+						playPromise.then(function() {
+							// Música iniciada com sucesso
+							console.log('Música iniciada automaticamente');
+						}).catch(function(error) {
+							// Navegador bloqueou autoplay - mostrar botão play
+							console.log('Autoplay bloqueado pelo navegador:', error);
+							playBtn.style.display = 'flex';
+							pauseBtn.style.display = 'none';
+							musicInfo.textContent = 'Clique para tocar';
+							
+							// Adicionar mensagem educativa
+							if (error.name === 'NotAllowedError') {
+								musicInfo.textContent = 'Clique para tocar música';
+							}
 						});
+					}
+				}
+				
+				// Função para pausar música
+				function pauseMusic() {
+					if (audio && isPlaying) {
+						audio.pause();
 					}
 				}
 				
@@ -878,14 +910,34 @@
 						audio.pause();
 						audio.currentTime = 0;
 						isPlaying = false;
-						playBtn.innerHTML = '▶️';
-						musicInfo.textContent = 'Music';
+						playBtn.style.display = 'flex';
+						pauseBtn.style.display = 'none';
+						musicInfo.textContent = 'Parado';
 					}
 				}
+				
+				// Função para tocar música quando o usuário clicar no botão play
+				function playMusic() {
+					if (audio && !isPlaying) {
+						audio.play();
+					} else if (!audio) {
+						initAndPlayMusic();
+					}
+				}
+				
+				// Inicializar música automaticamente quando a página carregar
+				// Pequeno delay para garantir que tudo está carregado
+				setTimeout(function() {
+					initAndPlayMusic();
+				}, 500);
 				
 				// Event listeners para os botões
 				if (playBtn) {
 					playBtn.addEventListener('click', playMusic);
+				}
+				
+				if (pauseBtn) {
+					pauseBtn.addEventListener('click', pauseMusic);
 				}
 				
 				if (stopBtn) {
@@ -896,7 +948,11 @@
 				document.addEventListener('keydown', function(event) {
 					if (event.code === 'Space' && audio) {
 						event.preventDefault();
-						playMusic();
+						if (isPlaying) {
+							pauseMusic();
+						} else {
+							audio.play();
+						}
 					}
 				});
 				
@@ -924,6 +980,3 @@
 
 	</body>
 </html>
-
-
-
