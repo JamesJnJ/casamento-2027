@@ -48,21 +48,35 @@
 
 			.dress-code-examples {
 				display: flex;
-				justify-content: center;
+				flex-direction: column;
+				gap: 30px;
+				margin-top: 30px;
+			}
+
+			.dress-code-example {
+				display: flex;
+				align-items: center;
 				gap: 20px;
-				margin-top: 20px;
-				flex-wrap: wrap;
-			}
-
-			.dress-code-item {
-				text-align: center;
-				max-width: 200px;
-			}
-
-			.dress-code-item img {
-				width: 100%;
+				background: rgba(255,255,255,0.05);
+				padding: 20px;
 				border-radius: 10px;
-				margin-bottom: 10px;
+			}
+
+			.dress-code-text {
+				flex: 1;
+			}
+
+			.dress-code-image {
+				width: 150px;
+				height: 150px;
+				border-radius: 10px;
+				overflow: hidden;
+			}
+
+			.dress-code-image img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
 			}
 
 			.hotel-card {
@@ -70,6 +84,74 @@
 				padding: 20px;
 				border-radius: 10px;
 				margin: 15px 0;
+			}
+
+			.pix-presente {
+				text-align: center;
+				max-width: 400px;
+				margin: 0 auto;
+			}
+
+			.qr-code-container {
+				margin: 20px 0;
+			}
+
+			.qr-code-container img {
+				max-width: 250px;
+				border-radius: 10px;
+				box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+			}
+
+			.destaque-texto {
+				background: rgba(255,255,255,0.1);
+				padding: 15px;
+				border-radius: 10px;
+				margin: 20px 0;
+				border-left: 4px solid #ff6b6b;
+			}
+
+			/* Controles de música */
+			.music-player {
+				position: fixed;
+				bottom: 20px;
+				right: 20px;
+				z-index: 1000;
+				background: rgba(0,0,0,0.8);
+				border-radius: 50px;
+				padding: 10px;
+				box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+			}
+
+			.music-controls {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+			}
+
+			.music-btn {
+				background: none;
+				border: none;
+				color: white;
+				font-size: 20px;
+				cursor: pointer;
+				width: 40px;
+				height: 40px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				transition: background 0.3s;
+			}
+
+			.music-btn:hover {
+				background: rgba(255,255,255,0.1);
+			}
+
+			.music-info {
+				display: none;
+				color: white;
+				font-size: 12px;
+				max-width: 200px;
 			}
 
 			/* Estilo para seções dos noivos */
@@ -97,17 +179,50 @@
 					font-size: 2em;
 				}
 
-				.dress-code-examples {
-					gap: 10px;
+				.dress-code-example {
+					flex-direction: column;
+					text-align: center;
 				}
 
-				.dress-code-item {
-					max-width: 150px;
+				.dress-code-image {
+					width: 120px;
+					height: 120px;
+				}
+
+				.music-player {
+					bottom: 10px;
+					right: 10px;
+				}
+
+				.music-info {
+					display: none !important;
+				}
+			}
+
+			@media screen and (max-width: 480px) {
+				.dress-code-image {
+					width: 100px;
+					height: 100px;
 				}
 			}
 		</style>
 	</head>
 	<body class="is-preload">
+
+		<!-- Player de Música -->
+		<div class="music-player" id="musicPlayer">
+			<div class="music-controls">
+				<button class="music-btn" id="playBtn" title="Play/Pause">
+					▶️
+				</button>
+				<button class="music-btn" id="stopBtn" title="Parar">
+					⏹️
+				</button>
+				<div class="music-info" id="musicInfo">
+					🎵 Tocando: Nossa Música Especial
+				</div>
+			</div>
+		</div>
 
 		<!-- Wrapper -->
 			<div id="wrapper" class="divided">
@@ -170,12 +285,15 @@
 				<section class="spotlight style1 orient-left content-align-left image-position-center onscroll-image-fade-in local-section" id="local">
 					<div class="content">
 						<h2>Local do Casamento</h2>
-						<p><strong>Casa Lucca Eventos</strong><br />
-						Praça Antônio Keller, 22, Piracicaba, Brazil 13415-020</p>
+						
 						<p><strong>Data:</strong> 16 de Janeiro de 2027<br />
 						<strong>Horário:</strong> 16:00 horas</p>
 						
+						<p><strong>Casa Lucca Eventos</strong><br />
+						Praça Antônio Keller, 22, Piracicaba, Brazil 13415-020</p>
+						
 						<p>Um espaço encantador que combina elegância e aconchego, perfeito para celebrar nosso amor.</p>
+						
 						<p>Siga o <a href="https://instagram.com/casaluccaeventos" target="_blank">@casaluccaeventos</a> no Instagram para conhecer melhor o local!</p>
 						
 						<!-- Mapa do Google -->
@@ -332,22 +450,31 @@
 						<h2>Dress Code</h2>
 						<p><strong>Elegância e Sofisticação</strong></p>
 						<p>Para tornar nosso dia ainda mais especial, sugerimos o seguinte dress code:</p>
-						<ul>
-							<li><strong>Para elas:</strong> Vestidos longos ou midi em tons pasteis, champagne, azul claro ou verde água. Tecidos fluidos e elegantes.</li>
-							<li><strong>Para eles:</strong> Terno escuro (preto, cinza ou azul marinho) ou social completo. Gravata opcional, mas bem-vinda!</li>
-						</ul>
-						<p><strong>Evitar:</strong> Jeans, roupas esportivas, branco total (reservado para a noiva) e preto total.</p>
-						<p>O importante é que você se sinta confortável e elegante para celebrar conosco!</p>
 						
-						<div class="dress-code-examples">
-							<div class="dress-code-item">
+						<!-- Exemplo feminino -->
+						<div class="dress-code-example">
+							<div class="dress-code-text">
+								<p><strong>Para elas:</strong> Vestidos longos ou midi em tons pasteis, champagne, azul claro ou verde água. Tecidos fluidos e elegantes.</p>
+							</div>
+							<div class="dress-code-image">
 								<img src="images/dress-code1.jpg" alt="Exemplo de vestido elegante para mulheres" />
-								<p>Elegância Feminina</p>
 							</div>
-							<div class="dress-code-item">
+						</div>
+						
+						<!-- Exemplo masculino -->
+						<div class="dress-code-example">
+							<div class="dress-code-text">
+								<p><strong>Para eles:</strong> Terno escuro (preto, cinza ou azul marinho) ou social completo. Gravata opcional, mas bem-vinda!</p>
+							</div>
+							<div class="dress-code-image">
 								<img src="images/dress-code2.jpg" alt="Exemplo de terno elegante para homens" />
-								<p>Sofisticação Masculina</p>
 							</div>
+						</div>
+
+						<!-- Texto em destaque -->
+						<div class="destaque-texto">
+							<p><strong>Evitar:</strong> Jeans, roupas esportivas, branco total (reservado para a noiva) e preto total.</p>
+							<p>O importante é que você se sinta confortável e elegante para celebrar conosco!</p>
 						</div>
 						
 						<ul class="actions stacked">
@@ -365,28 +492,18 @@
 						<h2>Lista de Presentes</h2>
 						<p class="major">Sua presença é o nosso maior presente! Mas se desejar nos presentear, ficaremos muito felizes.</p>
 						
-						<div class="items style1 medium onscroll-fade-in">
-							<section>
-								<span class="icon solid style2 major fa-home"></span>
-								<h3>Casa & Lar</h3>
-								<p>Presentes para nosso novo lar<br />
-								<a href="#" class="button small">Ver Lista</a></p>
-							</section>
-							<section>
-								<span class="icon solid style2 major fa-plane"></span>
-								<h3>Lua de Mel</h3>
-								<p>Contribuição para nossa viagem<br />
-								<a href="#" class="button small">Contribuir</a></p>
-							</section>
-							<section>
-								<span class="icon style2 major fa-gift"></span>
-								<h3>Presentes Diversos</h3>
-								<p>Outras opções de presentes<br />
-								<a href="#" class="button small">Ver Opções</a></p>
-							</section>
+						<div class="pix-presente">
+							<div class="qr-code-container">
+								<img src="images/qr-code-pix.jpg" alt="QR Code PIX para presente" />
+							</div>
+							<p><strong>Faça sua contribuição via PIX</strong></p>
+							<p>Escaneie o QR Code acima ou use a chave PIX:</p>
+							<p style="word-break: break-all; background: rgba(255,255,255,0.1); padding: 10px; border-radius: 5px;">
+								casamento.ana.james@email.com
+							</p>
+							<p><em>Todos os presentes serão muito bem-vindos e recebidos com muito carinho!</em></p>
 						</div>
 						
-						<p><em>Todos os presentes serão muito bem-vindos e recebidos com muito carinho!</em></p>
 						<ul class="actions stacked">
 							<li><a href="#hospedagem" class="button smooth-scroll-middle">Dicas de Hospedagem</a></li>
 						</ul>
@@ -559,6 +676,81 @@
 				// Atualizar contador a cada segundo
 				setInterval(atualizarContador, 1000);
 				
+				// Sistema de Música
+				const musicPlayer = document.getElementById('musicPlayer');
+				const playBtn = document.getElementById('playBtn');
+				const stopBtn = document.getElementById('stopBtn');
+				const musicInfo = document.getElementById('musicInfo');
+				
+				let audio = null;
+				let isPlaying = false;
+				
+				// Função para tocar música
+				function playMusic() {
+					if (!audio) {
+						// Criar elemento de áudio
+						audio = new Audio('assets/music/nossa-musica.mp3'); // Altere para o caminho da sua música
+						audio.loop = true;
+						audio.volume = 0.5; // Volume em 50%
+						
+						// Eventos do áudio
+						audio.addEventListener('play', function() {
+							isPlaying = true;
+							playBtn.innerHTML = '⏸️';
+							musicInfo.style.display = 'block';
+						});
+						
+						audio.addEventListener('pause', function() {
+							isPlaying = false;
+							playBtn.innerHTML = '▶️';
+						});
+						
+						audio.addEventListener('ended', function() {
+							isPlaying = false;
+							playBtn.innerHTML = '▶️';
+						});
+					}
+					
+					if (isPlaying) {
+						audio.pause();
+					} else {
+						audio.play().catch(function(error) {
+							console.log('Erro ao reproduzir música:', error);
+							// Se houver erro, tenta com uma música online de exemplo
+							audio.src = 'https://assets.mixkit.co/music/preview/mixkit-loving-you-117.mp3';
+							audio.play();
+						});
+					}
+				}
+				
+				// Função para parar música
+				function stopMusic() {
+					if (audio) {
+						audio.pause();
+						audio.currentTime = 0;
+						isPlaying = false;
+						playBtn.innerHTML = '▶️';
+						musicInfo.style.display = 'none';
+					}
+				}
+				
+				// Event listeners para os botões
+				if (playBtn) {
+					playBtn.addEventListener('click', playMusic);
+				}
+				
+				if (stopBtn) {
+					stopBtn.addEventListener('click', stopMusic);
+				}
+				
+				// Controle por teclado (espaço para play/pause)
+				document.addEventListener('keydown', function(event) {
+					if (event.code === 'Space' && audio) {
+						event.preventDefault();
+						playMusic();
+					}
+				});
+				
 				// Validação do formulário
 				const form = document.querySelector('form');
 				if (form) {
@@ -577,8 +769,7 @@
 					});
 				}
 				
-				// Galeria Lightbox já está funcionando com o script do template
-				console.log('Site carregado com sucesso! Contador ativo.');
+				console.log('Site carregado com sucesso! Contador e música ativos.');
 			});
 		</script>
 
