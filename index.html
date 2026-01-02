@@ -843,19 +843,19 @@
 						audio.addEventListener('play', function() {
 							isPlaying = true;
 							playBtn.innerHTML = '⏸️'; // Muda para ícone de pause
-							musicInfo.textContent = 'You look like you love me(playing)';
+							musicInfo.textContent = 'Music';
 						});
 						
 						audio.addEventListener('pause', function() {
 							isPlaying = false;
 							playBtn.innerHTML = '▶️'; // Volta para ícone de play
-							musicInfo.textContent = 'You look like you love me(pause)';
+							musicInfo.textContent = 'Music';
 						});
 						
 						audio.addEventListener('ended', function() {
 							isPlaying = false;
 							playBtn.innerHTML = '▶️';
-							musicInfo.textContent = 'You look like you love me(playing)';
+							musicInfo.textContent = 'Music';
 						});
 					}
 					
@@ -878,7 +878,7 @@
 						audio.currentTime = 0;
 						isPlaying = false;
 						playBtn.innerHTML = '▶️';
-						musicInfo.textContent = 'You look like you love me(playing)';
+						musicInfo.textContent = 'Music';
 					}
 				}
 				
@@ -923,3 +923,4 @@
 
 	</body>
 </html>
+
