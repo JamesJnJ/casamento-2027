@@ -517,51 +517,70 @@
 		<script src="assets/js/main.js"></script>
 		
 		<script>
-			// Contador Regressivo para 16 de Janeiro de 2027 às 16:00
-			function atualizarContador() {
-				const dataCasamento = new Date('January 16, 2027 16:00:00').getTime();
-				const agora = new Date().getTime();
-				const diferenca = dataCasamento - agora;
+			// AGUARDAR O DOCUMENTO CARREGAR COMPLETAMENTE
+			document.addEventListener('DOMContentLoaded', function() {
 				
-				if (diferenca > 0) {
-					const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
-					const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-					const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
-					const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
+				// Contador Regressivo para 16 de Janeiro de 2027 às 16:00
+				function atualizarContador() {
+					const dataCasamento = new Date('January 16, 2027 16:00:00').getTime();
+					const agora = new Date().getTime();
+					const diferenca = dataCasamento - agora;
 					
-					document.getElementById('dias').textContent = dias.toString().padStart(3, '0');
-					document.getElementById('horas').textContent = horas.toString().padStart(2, '0');
-					document.getElementById('minutos').textContent = minutos.toString().padStart(2, '0');
-					document.getElementById('segundos').textContent = segundos.toString().padStart(2, '0');
-				} else {
-					document.getElementById('contador-regressivo').innerHTML = '<h3 style="color: #fff;">O grande dia chegou! Estamos casados! 🎉</h3>';
-				}
-			}
-			
-			// Atualizar contador a cada segundo
-			setInterval(atualizarContador, 1000);
-			atualizarContador(); // Chamar uma vez ao carregar
-			
-			// Validação do formulário
-			document.querySelector('form').addEventListener('submit', function(e) {
-				const presenca = document.getElementById('presenca').value;
-				if (!presenca) {
-					e.preventDefault();
-					alert('Por favor, confirme se poderá comparecer ou não.');
-					return false;
+					// Verificar se os elementos existem
+					const diasElement = document.getElementById('dias');
+					const horasElement = document.getElementById('horas');
+					const minutosElement = document.getElementById('minutos');
+					const segundosElement = document.getElementById('segundos');
+					const contadorElement = document.getElementById('contador-regressivo');
+					
+					if (!diasElement || !horasElement || !minutosElement || !segundosElement || !contadorElement) {
+						console.error('Elementos do contador não encontrados!');
+						return;
+					}
+					
+					if (diferenca > 0) {
+						const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+						const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+						const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+						const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
+						
+						diasElement.textContent = dias.toString().padStart(3, '0');
+						horasElement.textContent = horas.toString().padStart(2, '0');
+						minutosElement.textContent = minutos.toString().padStart(2, '0');
+						segundosElement.textContent = segundos.toString().padStart(2, '0');
+					} else {
+						contadorElement.innerHTML = '<h3 style="color: #fff; margin: 0;">🎉 O grande dia chegou! Estamos casados! 🎉</h3>';
+					}
 				}
 				
-				// Simulação de envio (substituir por código real)
-				e.preventDefault();
-				alert('Obrigado por confirmar sua presença! Em breve entraremos em contato.');
-				this.reset();
+				// Iniciar contador imediatamente
+				atualizarContador();
+				
+				// Atualizar contador a cada segundo
+				setInterval(atualizarContador, 1000);
+				
+				// Validação do formulário
+				const form = document.querySelector('form');
+				if (form) {
+					form.addEventListener('submit', function(e) {
+						const presenca = document.getElementById('presenca');
+						if (!presenca || !presenca.value) {
+							e.preventDefault();
+							alert('Por favor, confirme se poderá comparecer ou não.');
+							return false;
+						}
+						
+						// Simulação de envio (substituir por código real)
+						e.preventDefault();
+						alert('Obrigado por confirmar sua presença! Em breve entraremos em contato.');
+						this.reset();
+					});
+				}
+				
+				// Galeria Lightbox já está funcionando com o script do template
+				console.log('Site carregado com sucesso! Contador ativo.');
 			});
-
-			// Galeria Lightbox já está funcionando com o script do template
 		</script>
 
 	</body>
 </html>
-
-
-
