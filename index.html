@@ -403,18 +403,18 @@
 <!-- Player de Música -->
     <div class="music-player" id="musicPlayer">
         <div class="music-controls">
-            <button class="music-btn" id="pauseBtn" title="Pausar">
-                ⏸️
-            </button>
-            <button class="music-btn" id="playBtn" title="Play" style="display: none;">
+            <button class="music-btn" id="playBtn" title="Play">
                 ▶️
+            </button>
+            <button class="music-btn" id="pauseBtn" title="Pausar" style="display: none;">
+                ⏸️
             </button>
             <button class="music-btn" id="stopBtn" title="Parar">
                 ⏹️
             </button>
         </div>
         <div class="music-info" id="musicInfo">
-            Tocando...
+            Clique para tocar
         </div>
     </div>
 		<!-- Wrapper -->
@@ -648,14 +648,12 @@
 								<div class="dress-code-image-container">
 									<img src="images/paraelas.jpg" alt="Exemplo de vestido elegante para mulheres" loading="lazy" />
 								</div>
-								<!--<div class="dress-code-image-label">Para elas</div>-->
 							</div>
 							
 							<div class="dress-code-image-item">
 								<div class="dress-code-image-container">
 									<img src="images/paraeles.jpg" alt="Exemplo de terno elegante para homens" loading="lazy" />
 								</div>
-								<!--<div class="dress-code-image-label">Para eles</div>-->
 							</div>
 						</div>
 						
@@ -666,7 +664,7 @@
 							</div>
 							
 							<div class="dress-code-text-item">
-								<p><strong>Para eles:</strong> Terno claro (bege, cinza ou azul marinho) completo. Gravata opcional, mas bem-vinda.</p>
+								<p><strong>Para eles:</strong> Terno cores bege, cinza ou azul marinho completo. Elegância, leveza com gravata opcional, mas bem-vinda.</p>
 							</div>
 						</div>
 
@@ -693,7 +691,7 @@
 								<img src="images/pix.jpg" alt="QR Code PIX para presente" loading="lazy" />
 							</div>
 							<p><strong>Faça sua contribuição via PIX</strong></p>
-							<p>Escaneie o QR Code acima ou use a chave PIX:</p>
+							<p>Escaneie o QR Code acima no app do seu banco ou use a chave PIX abaixo:</p>
 							<p style="word-break: break-all; background: rgba(255,255,255,0.1); padding: 8px; border-radius: 5px; font-size: 0.9em; margin: 10px 0;">
 								CPF: 397.079.908-21 - James Andrade Moreno Jr
 							</p>
@@ -838,9 +836,12 @@
 
         	let audio = null;
 			let isPlaying = false;
+			let audioInitialized = false;
 
-			// Função para criar e configurar o áudio
-			function createAudio() {
+			// Função para inicializar o áudio
+			function initAudio() {
+				if (audioInitialized) return;
+				
 				audio = new Audio('assets/music/you_look_like_you_love_me.mp3');
 				audio.loop = true;
 				audio.volume = 0.5;
@@ -856,38 +857,50 @@
 
 				audio.addEventListener('pause', function () {
 					isPlaying = false;
+					musicInfo.textContent = 'Pausado';
 					playBtn.style.display = 'flex';
 					pauseBtn.style.display = 'none';
-					musicInfo.textContent = 'Pausado';
 				});
 
 				audio.addEventListener('ended', function () {
 					isPlaying = false;
+					musicInfo.textContent = 'Finalizado';
 					playBtn.style.display = 'flex';
 					pauseBtn.style.display = 'none';
-					musicInfo.textContent = 'Finalizado';
 				});
+				
+				audio.addEventListener('error', function () {
+					musicInfo.textContent = 'Erro ao carregar';
+					console.error('Erro ao carregar áudio');
+				});
+				
+				audioInitialized = true;
 			}
 
 			// Função para tocar música
 			function playMusic() {
-				if (!audio) createAudio();
-				audio.play().then(() => {
-					console.log('Música tocando');
-				}).catch(error => {
-					console.error('Erro ao iniciar música:', error);
-					musicInfo.textContent = 'Clique para tocar';
-					// Tenta novamente com interação do usuário
-					document.body.addEventListener('click', function userInteraction() {
-						playMusic();
-						document.body.removeEventListener('click', userInteraction);
-					}, { once: true });
-				});
+				if (!audioInitialized) {
+					initAudio();
+				}
+				
+				if (audio) {
+					audio.play().then(() => {
+						console.log('Música tocando');
+					}).catch(error => {
+						console.error('Erro ao iniciar música:', error);
+						musicInfo.textContent = 'Clique para tocar';
+						// Adiciona listener para tentar novamente na próxima interação do usuário
+						document.addEventListener('click', function tryPlayOnClick() {
+							playMusic();
+							document.removeEventListener('click', tryPlayOnClick);
+						}, { once: true });
+					});
+				}
 			}
 
 			// Função para pausar música
 			function pauseMusic() {
-				if (audio) {
+				if (audio && isPlaying) {
 					audio.pause();
 				}
 			}
@@ -897,12 +910,16 @@
 				if (audio) {
 					audio.pause();
 					audio.currentTime = 0;
+					isPlaying = false;
+					musicInfo.textContent = 'Parado';
+					playBtn.style.display = 'flex';
+					pauseBtn.style.display = 'none';
 				}
 			}
 			
 			// Tentar autoplay
 			function tryAutoplay() {
-				if (!audio) createAudio();
+				initAudio();
 				playMusic();
 			}
 			
@@ -946,20 +963,26 @@
 				
 				// Event listeners para os botões de música
 				if (playBtn) {
-					playBtn.addEventListener('click', playMusic);
+					playBtn.addEventListener('click', function() {
+						playMusic();
+					});
 				}
 				
 				if (pauseBtn) {
-					pauseBtn.addEventListener('click', pauseMusic);
+					pauseBtn.addEventListener('click', function() {
+						pauseMusic();
+					});
 				}
 				
 				if (stopBtn) {
-					stopBtn.addEventListener('click', stopMusic);
+					stopBtn.addEventListener('click', function() {
+						stopMusic();
+					});
 				}
 				
-				// Controle por teclado
+				// Controle por teclado (espaço para play/pause)
 				document.addEventListener('keydown', function(event) {
-					if (event.code === 'Space' && audio) {
+					if (event.code === 'Space') {
 						event.preventDefault();
 						if (isPlaying) {
 							pauseMusic();
@@ -990,24 +1013,26 @@
 				}
 				
 				// Otimização: Lazy loading para elementos pesados
-				const lazyLoadElements = document.querySelectorAll('img[data-src], iframe[data-src]');
-				const lazyLoadObserver = new IntersectionObserver((entries) => {
-					entries.forEach(entry => {
-						if (entry.isIntersecting) {
-							const element = entry.target;
-							if (element.tagName === 'IMG') {
-								element.src = element.dataset.src;
-							} else if (element.tagName === 'IFRAME') {
-								element.src = element.dataset.src;
+				if ('IntersectionObserver' in window) {
+					const lazyLoadElements = document.querySelectorAll('img[data-src], iframe[data-src]');
+					const lazyLoadObserver = new IntersectionObserver((entries) => {
+						entries.forEach(entry => {
+							if (entry.isIntersecting) {
+								const element = entry.target;
+								if (element.tagName === 'IMG') {
+									element.src = element.dataset.src;
+								} else if (element.tagName === 'IFRAME') {
+									element.src = element.dataset.src;
+								}
+								lazyLoadObserver.unobserve(element);
 							}
-							lazyLoadObserver.unobserve(element);
-						}
+						});
 					});
-				});
-				
-				lazyLoadElements.forEach(element => {
-					lazyLoadObserver.observe(element);
-				});
+					
+					lazyLoadElements.forEach(element => {
+						lazyLoadObserver.observe(element);
+					});
+				}
 			});
 			
 			// Tentar autoplay após a página estar completamente carregada
