@@ -364,24 +364,23 @@
 		</style>
 	</head>
 	<body class="is-preload">
-
-		<!-- Player de Música - MODIFICADO (menor e fundo branco) -->
-		<div class="music-player" id="musicPlayer">
-			<div class="music-controls">
-				<button class="music-btn" id="pauseBtn" title="Pausar">
-					⏸️
-				</button>
-				<button class="music-btn" id="playBtn" title="Play" style="display: none;">
-					▶️
-				</button>
-				<button class="music-btn" id="stopBtn" title="Parar">
-					⏹️
-				</button>
-			</div>
-			<div class="music-info" id="musicInfo">
-				Tocando...
-			</div>
-		</div>
+<!-- Player de Música -->
+    <div class="music-player" id="musicPlayer">
+        <div class="music-controls">
+            <button class="music-btn" id="pauseBtn" title="Pausar">
+                ⏸️
+            </button>
+            <button class="music-btn" id="playBtn" title="Play" style="display: none;">
+                ▶️
+            </button>
+            <button class="music-btn" id="stopBtn" title="Parar">
+                ⏹️
+            </button>
+        </div>
+        <div class="music-info" id="musicInfo">
+            Tocando...
+        </div>
+    </div>
 		<!-- Wrapper -->
 			<div id="wrapper" class="divided">
 				
@@ -780,175 +779,64 @@
 			</div>
 
 		<!-- Scripts -->
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/jquery.scrollex.min.js"></script>
+	    <script src="assets/js/jquery.min.js"></script>
+   		<script src="assets/js/jquery.scrollex.min.js"></script>
 		<script src="assets/js/jquery.scrolly.min.js"></script>
 		<script src="assets/js/browser.min.js"></script>
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
 		
-		<script>
-			// Sistema de Música - VERSÃO MELHORADA PARA AUTOPLAY (SOLUÇÃO 1)
-			const musicPlayer = document.getElementById('musicPlayer');
-			const playBtn = document.getElementById('playBtn');
-			const pauseBtn = document.getElementById('pauseBtn');
-			const stopBtn = document.getElementById('stopBtn');
-			const musicInfo = document.getElementById('musicInfo');
+	    <script>
+        	// Sistema de Música
+        	const musicPlayer = document.getElementById('musicPlayer');
+        	const playBtn = document.getElementById('playBtn');
+        	const pauseBtn = document.getElementById('pauseBtn');
+        	const stopBtn = document.getElementById('stopBtn');
+        	const musicInfo = document.getElementById('musicInfo');
+
+        	let audio = new Audio('assets/music/you_look_like_you_love_me.mp3');
+        	audio.loop = true;
+        	audio.volume = 0.5; // Volume médio
+        	audio.preload = 'auto';
 			
-			let audio = null;
-			let isPlaying = false;
-			let autoplayAttempted = false;
-			
-			// Criar elemento de áudio assim que possível
-			function createAudio() {
-				if (!audio) {
-					try {
-						audio = new Audio('assets/music/you_look_like_you_love_me.mp3');
-						audio.loop = true;
-						audio.volume = 0.5; // Volume médio
-						audio.preload = 'auto';
-						
-						// Estratégia: silenciar inicialmente para evitar bloqueios
-						audio.muted = true;
-						
-						// Configurar eventos do áudio
-						audio.addEventListener('play', function() {
-							isPlaying = true;
-							playBtn.style.display = 'none';
-							pauseBtn.style.display = 'flex';
-							musicInfo.textContent = 'Tocando...';
-							console.log('Música iniciada com sucesso');
-						});
-						
-						audio.addEventListener('pause', function() {
-							isPlaying = false;
-							playBtn.style.display = 'flex';
-							pauseBtn.style.display = 'none';
-							musicInfo.textContent = 'Pausado';
-						});
-						
-						audio.addEventListener('ended', function() {
-							isPlaying = false;
-							playBtn.style.display = 'flex';
-							pauseBtn.style.display = 'none';
-							musicInfo.textContent = 'Finalizado';
-						});
-						
-						audio.addEventListener('canplaythrough', function() {
-							console.log('Música carregada e pronta para tocar');
-						});
-						
-						audio.addEventListener('error', function(error) {
-							console.error('Erro ao carregar música:', error);
-							musicInfo.textContent = 'Erro ao carregar';
-							playBtn.style.display = 'flex';
-							pauseBtn.style.display = 'none';
-						});
-						
-						console.log('Áudio criado com sucesso');
-					} catch (error) {
-						console.error('Erro ao criar áudio:', error);
-					}
-				}
-				return audio;
-			}
-			
-			// Nova estratégia de autoplay mais agressiva
-			function tryAutoplay() {
-				if (autoplayAttempted) return;
-				
-				autoplayAttempted = true;
-				
-				if (!audio) {
-					audio = createAudio();
-					if (!audio) return;
-				}
-				
-				// Estratégia melhorada para autoplay
-				function attemptPlay() {
-					// Primeiro, tenta tocar silenciado (geralmente permitido)
-					audio.muted = true;
-					const playPromise = audio.play();
-					
-					if (playPromise !== undefined) {
-						playPromise
-							.then(() => {
-								console.log('Autoplay silenciado funcionou!');
-								// Aguarda um pouco e tenta desmutar
-								setTimeout(() => {
-									audio.muted = false;
-									audio.volume = 0.5;
-									console.log('Som ativado após autoplay silenciado');
-								}, 1000);
-							})
-							.catch(error => {
-								console.log('Autoplay silenciado bloqueado, tentando estratégia de interação:', error);
-								
-								// Mostra instrução para o usuário
-								musicInfo.textContent = 'Clique para ativar música';
-								playBtn.style.display = 'flex';
-								pauseBtn.style.display = 'none';
-								
-								// Prepara para interação
-								const enableMusic = () => {
-									audio.muted = false;
-									audio.play()
-										.then(() => {
-											console.log('Música iniciada após interação');
-											document.removeEventListener('click', enableMusic);
-											document.removeEventListener('touchstart', enableMusic);
-										})
-										.catch(e => console.log('Erro após interação:', e));
-								};
-								
-								document.addEventListener('click', enableMusic, { once: true });
-								document.addEventListener('touchstart', enableMusic, { once: true });
-							});
-					}
-				}
-				
-				// Aguarda um pouco após o carregamento da página
-				setTimeout(attemptPlay, 1000);
-			}
-			
-			// Função para pausar música
-			function pauseMusic() {
-				if (audio && isPlaying) {
-					audio.pause();
-				}
-			}
-			
-			// Função para parar música completamente
-			function stopMusic() {
-				if (audio) {
-					audio.pause();
-					audio.currentTime = 0;
-					isPlaying = false;
-					playBtn.style.display = 'flex';
-					pauseBtn.style.display = 'none';
-					musicInfo.textContent = 'Parado';
-				}
-			}
-			
-			// Função para tocar música
-			function playMusic() {
-				if (!audio) {
-					createAudio();
-				}
-				
-				if (audio && !isPlaying) {
-					audio.muted = false;
-					audio.play()
-						.then(() => {
-							console.log('Música iniciada manualmente');
-						})
-						.catch(error => {
-							console.error('Erro ao iniciar música:', error);
-							musicInfo.textContent = 'Erro ao tocar';
-						});
-				}
-			}
+		        // Configurar eventos do áudio
+       		audio.addEventListener('play', function () {
+            musicInfo.textContent = 'Tocando...';
+            playBtn.style.display = 'none';
+            pauseBtn.style.display = 'flex';
+        });
+
+       		audio.addEventListener('pause', function () {
+            playBtn.style.display = 'flex';
+            pauseBtn.style.display = 'none';
+            musicInfo.textContent = 'Pausado';
+        });
+
+        	audio.addEventListener('ended', function () {
+            playBtn.style.display = 'flex';
+            pauseBtn.style.display = 'none';
+            musicInfo.textContent = 'Finalizado';
+        });
+
+        // Função para tocar música
+        function playMusic() {
+            audio.play().catch(error => {
+                console.error('Erro ao iniciar música:', error);
+                musicInfo.textContent = 'Erro ao tocar';
+            });
+        }
+
+        // Função para pausar música
+        function pauseMusic() {
+            audio.pause();
+        }
+
+        // Função para parar música
+        function stopMusic() {
+            audio.pause();
+            audio.currentTime = 0;
+        }
 			
 			// AGUARDAR O DOCUMENTO CARREGAR COMPLETAMENTE
 			document.addEventListener('DOMContentLoaded', function() {
@@ -1053,3 +941,4 @@
 
 	</body>
 </html>
+
