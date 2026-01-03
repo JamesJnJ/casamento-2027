@@ -20,7 +20,7 @@
 
 			.contador-item {
 				text-align: center;
-				background: #ffffff; /* Fundo branco */
+				background: #ffffff;
 				padding: 20px;
 				border-radius: 10px;
 				min-width: 100px;
@@ -30,13 +30,13 @@
 				font-size: 3em;
 				font-weight: bold;
 				display: block;
-				color: #000000; /* Texto preto */
+				color: #000000;
 			}
 			.contador-item p {
 				margin: 10px 0 0 0;
 				font-size: 0.9em;
 				opacity: 0.8;
-				color: #333333; /* Texto mais escuro */
+				color: #333333;
 			}
 			.mapa-container {
 				width: 100%;
@@ -45,61 +45,95 @@
 				border-radius: 10px;
 				overflow: hidden;
 			}
+			
+			/* DRESS CODE MODIFICADO - Layout horizontal para imagens */
 			.dress-code-examples {
 				display: flex;
 				flex-direction: column;
 				gap: 30px;
 				margin-top: 30px;
 			}
-			.dress-code-example {
+			
+			.dress-code-images-row {
 				display: flex;
-				align-items: center;
-				gap: 20px;
-				background: rgba(255,255,255,0.05);
-				padding: 20px;
-				border-radius: 10px;
+				justify-content: center;
+				gap: 40px;
+				margin: 30px 0;
+				flex-wrap: nowrap;
 			}
-			.dress-code-text {
+			
+			.dress-code-image-item {
+				text-align: center;
 				flex: 1;
+				max-width: 300px;
 			}
-			.dress-code-image {
-				width: 150px;
-				height: 150px;
+			
+			.dress-code-image-container {
+				width: 280px;
+				height: 350px;
 				border-radius: 10px;
 				overflow: hidden;
+				margin: 0 auto 15px;
+				box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 			}
-			.dress-code-image img {
+			
+			.dress-code-image-container img {
 				width: 100%;
 				height: 100%;
 				object-fit: cover;
+				transition: transform 0.3s ease;
+			}
+			
+			.dress-code-image-container:hover img {
+				transform: scale(1.05);
+			}
+			
+			.dress-code-image-label {
+				font-weight: bold;
+				font-size: 1.1em;
+				margin-bottom: 5px;
+			}
+			
+			.dress-code-text-row {
+				display: flex;
+				justify-content: center;
+				gap: 40px;
+				margin-top: 10px;
+			}
+			
+			.dress-code-text-item {
+				flex: 1;
+				max-width: 300px;
+				text-align: center;
+				padding: 0 10px;
 			}
 
 			.hotel-card {
 				background: rgba(255,255,255,0.05);
-				padding: 10px 15px; /* Reduzido o padding */
+				padding: 10px 15px;
 				border-radius: 10px;
-				margin: 5px 0; /* Reduzido o margin */
-				line-height: 1.3; /* Reduz o espaçamento entre linhas */
+				margin: 5px 0;
+				line-height: 1.3;
 			}
 			
 			.hotel-card h4 {
-				margin-bottom: 5px; /* Reduz espaço abaixo do título */
+				margin-bottom: 5px;
 			}
 			
 			.hotel-card p {
-				margin: 3px 0; /* Reduz espaço entre linhas do parágrafo */
+				margin: 3px 0;
 			}
 			
 			.pix-presente {
 				text-align: center;
 				max-width: 400px;
 				margin: 0 auto;
-				padding: 10px 0; /* Reduzido padding vertical */
+				padding: 10px 0;
 			}
 			
 			/* Estilo para seção compacta */
 			.secao-compacta {
-				padding: 30px 0 !important; /* Reduz padding vertical */
+				padding: 30px 0 !important;
 			}
 			
 			.secao-compacta .inner {
@@ -108,28 +142,28 @@
 			}
 			
 			.secao-compacta h2 {
-				margin-bottom: 15px !important; /* Reduz espaço abaixo do título */
+				margin-bottom: 15px !important;
 			}
 			
 			.secao-compacta p.major {
-				margin-bottom: 20px !important; /* Reduz espaço abaixo do texto principal */
+				margin-bottom: 20px !important;
 			}
 			
 			.qr-code-container {
-				margin: 15px 0; /* Reduzido */
+				margin: 15px 0;
 			}
 			.qr-code-container img {
-				max-width: 200px; /* Reduzido de 250px */
+				max-width: 200px;
 				border-radius: 10px;
 				box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 			}
 			.destaque-texto {
 				background: rgba(255,255,255,0.1);
-				padding: 12px; /* Reduzido de 15px */
+				padding: 12px;
 				border-radius: 10px;
-				margin: 15px 0; /* Reduzido de 20px */
+				margin: 15px 0;
 				border-left: 4px solid #ff6b6b;
-				font-size: 0.9em; /* Texto um pouco menor */
+				font-size: 0.9em;
 			}
 			
 			/* Controles de música - MODIFICADO para menor e fundo branco */
@@ -138,14 +172,14 @@
 				bottom: 15px;
 				right: 15px;
 				z-index: 1000;
-				background: #ffffff; /* Fundo branco */
-				border-radius: 8px; /* Mais arredondado */
-				padding: 6px 10px; /* Menor padding */
+				background: #ffffff;
+				border-radius: 8px;
+				padding: 6px 10px;
 				box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 				display: flex;
 				align-items: center;
 				gap: 6px;
-				min-width: 160px; /* Menor largura */
+				min-width: 160px;
 				max-width: 160px;
 			}
 			.music-controls {
@@ -156,11 +190,11 @@
 			.music-btn {
 				background: none;
 				border: none;
-				color: #000000; /* Ícones pretos */
-				font-size: 14px; /* Menor */
+				color: #000000;
+				font-size: 14px;
 				cursor: pointer;
-				width: 28px; /* Menor */
-				height: 28px; /* Menor */
+				width: 28px;
+				height: 28px;
 				border-radius: 50%;
 				display: flex;
 				align-items: center;
@@ -170,22 +204,22 @@
 			}
 
 			.music-btn:hover {
-				background: rgba(0,0,0,0.1); /* Fundo mais escuro no hover */
+				background: rgba(0,0,0,0.1);
 			}
 
 			.music-info {
-				color: #333333; /* Texto mais escuro */
-				font-size: 10px; /* Menor */
+				color: #333333;
+				font-size: 10px;
 				white-space: nowrap;
 				overflow: hidden;
 				text-overflow: ellipsis;
-				max-width: 100px; /* Menor */
+				max-width: 100px;
 				font-weight: 500;
 			}
 			
 			/* Estilo para centralizar conteúdo na primeira seção */
 			.banner .content {
-				text-align: center; /* Centraliza todo o texto */
+				text-align: center;
 				display: flex;
 				flex-direction: column;
 				align-items: center;
@@ -196,20 +230,20 @@
 				line-height: 1.2;
 				word-wrap: break-word;
 				hyphens: auto;
-				text-align: center; /* Centraliza o título */
+				text-align: center;
 			}
 			
 			.banner .content p.major {
-				text-align: center; /* Centraliza o parágrafo principal */
+				text-align: center;
 			}
 			
 			.banner .content p:not(.major) {
-				text-align: center; /* Centraliza outros parágrafos */
+				text-align: center;
 			}
 			
 			.banner .actions.stacked {
 				display: flex;
-				justify-content: center; /* Centraliza o botão */
+				justify-content: center;
 				width: 100%;
 			}
 			
@@ -224,22 +258,13 @@
 			.dress-code-centralizado {
 				text-align: center;
 			}
-			.dress-code-centralizado .dress-code-examples {
-				align-items: center;
-			}
-			.dress-code-centralizado .dress-code-example {
-				flex-direction: column;
-				text-align: center;
-				max-width: 600px;
-				margin: 0 auto;
-			}
 			
 			/* Linha horizontal entre seções */
 			.separador-secao {
 				width: 100%;
 				height: 1px;
 				background: rgba(255,255,255,0.2);
-				margin: 30px 0; /* Reduzido de 40px */
+				margin: 30px 0;
 			}
 			
 			/* Estilo para formulário compacto */
@@ -284,11 +309,11 @@
 			
 			/* Ajuste para lista de "O que fazer" com a dica embaixo */
 			.hospedagem-section ul {
-				margin-bottom: 10px; /* Reduz espaço abaixo da lista */
+				margin-bottom: 10px;
 			}
 			
 			.hospedagem-section p {
-				margin-top: 10px; /* Adiciona espaço acima do parágrafo */
+				margin-top: 10px;
 			}
 
 			/* Responsividade */
@@ -304,14 +329,25 @@
 				.contador-item span {
 					font-size: 2em;
 				}
-				.dress-code-example {
+				
+				/* Dress Code responsivo */
+				.dress-code-images-row {
 					flex-direction: column;
-					text-align: center;
+					gap: 20px;
+					align-items: center;
 				}
-				.dress-code-image {
-					width: 120px;
-					height: 120px;
+				
+				.dress-code-text-row {
+					flex-direction: column;
+					gap: 20px;
+					align-items: center;
 				}
+				
+				.dress-code-image-container {
+					width: 250px;
+					height: 300px;
+				}
+				
 				.music-player {
 					bottom: 10px;
 					right: 10px;
@@ -339,9 +375,9 @@
 				}
 			}
 			@media screen and (max-width: 480px) {
-				.dress-code-image {
-					width: 100px;
-					height: 100px;
+				.dress-code-image-container {
+					width: 220px;
+					height: 280px;
 				}
 				.banner .content h1 {
 					font-size: 1.8em;
@@ -418,7 +454,7 @@
 						</ul>
 					</div>
 					<div class="image">
-						<img src="images/banner_3.jpg" alt="Ana Luiza e James Moreno - Foto principal do casal" />
+						<img src="images/banner_3.jpg" alt="Ana Luiza e James Moreno - Foto principal do casal" loading="lazy" />
 					</div>
 				</section>
 				<!-- Sessão 2: Nossa História -->
@@ -440,7 +476,7 @@
 						</ul>
 					</div>
 					<div class="image">
-						<img src="images/spotlight01_1.jpg" alt="Nossa história - Ana e James em um momento especial" />
+						<img src="images/spotlight01_1.jpg" alt="Nossa história - Ana e James em um momento especial" loading="lazy" />
 					</div>
 				</section>
 				<!-- Sessão 3: Local do Evento -->
@@ -473,7 +509,7 @@
 						</ul>
 					</div>
 					<div class="image">
-						<img src="images/spotlight02_3.jpg" alt="Casa Lucca Eventos - Local do casamento" />
+						<img src="images/spotlight02_3.jpg" alt="Casa Lucca Eventos - Local do casamento" loading="lazy" />
 					</div>
 				</section>
 
@@ -487,8 +523,7 @@
 					<div class="gallery style2 medium lightbox onscroll-fade-in">
 						<article>
 							<a href="images/gallery/fulls/05.jpg" class="image">
-							<!-- <a href="images/gallery/fulls/01.jpg" class="image"> -->
-								<img src="images/gallery/thumbs/01_2.jpg" alt="Primeiro encontro do casal" />
+								<img src="images/gallery/thumbs/01_2.jpg" alt="Primeiro encontro do casal" loading="lazy" />
 							</a>
 							<div class="caption">
 								<h3>Nosso Primeiro Encontro</h3>
@@ -497,7 +532,7 @@
 						</article>
 						<article>
 							<a href="images/gallery/fulls/02.jpg" class="image">
-								<img src="images/gallery/thumbs/02_2.jpg" alt="Primeira viagem juntos" />
+								<img src="images/gallery/thumbs/02_2.jpg" alt="Primeira viagem juntos" loading="lazy" />
 							</a>
 							<div class="caption">
 								<h3>Primeira Viagem</h3>
@@ -506,7 +541,7 @@
 						</article>
 						<article>
 							<a href="images/gallery/fulls/03.jpg" class="image">
-								<img src="images/gallery/thumbs/03_2.jpg" alt="Pedido de casamento" />
+								<img src="images/gallery/thumbs/03_2.jpg" alt="Pedido de casamento" loading="lazy" />
 							</a>
 							<div class="caption">
 								<h3>O Pedido</h3>
@@ -515,7 +550,7 @@
 						</article>
 						<article>
 							<a href="images/gallery/fulls/04.jpg" class="image">
-								<img src="images/gallery/thumbs/04_2.jpg" alt="Encontro das famílias" />
+								<img src="images/gallery/thumbs/04_2.jpg" alt="Encontro das famílias" loading="lazy" />
 							</a>
 							<div class="caption">
 								<h3>Famílias Unidas</h3>
@@ -524,7 +559,7 @@
 						</article>
 						<article>
 							<a href="images/gallery/fulls/05.jpg" class="image">
-								<img src="images/gallery/thumbs/05_2.jpg" alt="Ensaio pré-casamento" />
+								<img src="images/gallery/thumbs/05_2.jpg" alt="Ensaio pré-casamento" loading="lazy" />
 							</a>
 							<div class="caption">
 								<h3>Ensaio Pré-Casamento</h3>
@@ -533,7 +568,7 @@
 						</article>
 						<article>
 							<a href="images/gallery/fulls/06.jpg" class="image">
-								<img src="images/gallery/thumbs/06_1.jpg" alt="Momento descontraído" />
+								<img src="images/gallery/thumbs/06_1.jpg" alt="Momento descontraído" loading="lazy" />
 							</a>
 							<div class="caption">
 								<h3>Risadas e Alegria</h3>
@@ -542,7 +577,7 @@
 						</article>
 						<article>
 							<a href="images/gallery/fulls/07.jpg" class="image">
-								<img src="images/gallery/thumbs/07_1.jpg" alt="Viagem romântica" />
+								<img src="images/gallery/thumbs/07_1.jpg" alt="Viagem romântica" loading="lazy" />
 							</a>
 							<div class="caption">
 								<h3>Viagem Romântica</h3>
@@ -551,7 +586,7 @@
 						</article>
 						<article>
 							<a href="images/gallery/fulls/08.jpg" class="image">
-								<img src="images/gallery/thumbs/08_1.jpg" alt="Celebração especial" />
+								<img src="images/gallery/thumbs/08_1.jpg" alt="Celebração especial" loading="lazy" />
 							</a>
 							<div class="caption">
 								<h3>Celebração de Namoro</h3>
@@ -560,7 +595,7 @@
 						</article>
 						<article>
 							<a href="images/gallery/fulls/09.jpg" class="image">
-								<img src="images/gallery/thumbs/09_1.jpg" alt="Momento casual" />
+								<img src="images/gallery/thumbs/09_1.jpg" alt="Momento casual" loading="lazy" />
 							</a>
 							<div class="caption">
 								<h3>Dias Comuns, Amor Extraordinário</h3>
@@ -569,7 +604,7 @@
 						</article>
 						<article>
 							<a href="images/gallery/fulls/10.jpg" class="image">
-								<img src="images/gallery/thumbs/10_2.jpg" alt="Preparativos do casamento" />
+								<img src="images/gallery/thumbs/10_2.jpg" alt="Preparativos do casamento" loading="lazy" />
 							</a>
 							<div class="caption">
 								<h3>Preparativos</h3>
@@ -578,7 +613,7 @@
 						</article>
 						<article>
 							<a href="images/gallery/fulls/11.jpg" class="image">
-								<img src="images/gallery/thumbs/11_2.jpg" alt="Momento íntimo" />
+								<img src="images/gallery/thumbs/11_2.jpg" alt="Momento íntimo" loading="lazy" />
 							</a>
 							<div class="caption">
 								<h3>Olhares Que Falam</h3>
@@ -587,7 +622,7 @@
 						</article>
 						<article>
 							<a href="images/gallery/fulls/12.jpg" class="image">
-								<img src="images/gallery/thumbs/12_2.jpg" alt="Futuro promissor" />
+								<img src="images/gallery/thumbs/12_2.jpg" alt="Futuro promissor" loading="lazy" />
 							</a>
 							<div class="caption">
 								<h3>Rumo ao Futuro</h3>
@@ -607,25 +642,31 @@
 						<p class="major"><strong>Elegância e Sofisticação</strong></p>
 						<p>Para tornar nosso dia ainda mais especial, sugerimos o seguinte dress code:</p>
 						
-						<div class="dress-code-examples">
-							<!-- Exemplo feminino -->
-							<div class="dress-code-example">
-								<div class="dress-code-image">
-									<img src="images/paraelas.jpg" alt="Exemplo de vestido elegante para mulheres" />
+						<!-- Linha de imagens lado a lado -->
+						<div class="dress-code-images-row">
+							<div class="dress-code-image-item">
+								<div class="dress-code-image-container">
+									<img src="images/paraelas.jpg" alt="Exemplo de vestido elegante para mulheres" loading="lazy" />
 								</div>
-								<div class="dress-code-text">
-									<p><strong>Para elas:</strong> Vestidos longos ou midi em tons pasteis, champagnem, azul claro, verde água ou cores claras de verão. Tecidos fluidos e elegantes.</p>
-								</div>
+								<!--<div class="dress-code-image-label">Para elas</div>-->
 							</div>
 							
-							<!-- Exemplo masculino -->
-							<div class="dress-code-example">
-								<div class="dress-code-image">
-									<img src="images/paraeles.jpg" alt="Exemplo de terno elegante para homens" />
+							<div class="dress-code-image-item">
+								<div class="dress-code-image-container">
+									<img src="images/paraeles.jpg" alt="Exemplo de terno elegante para homens" loading="lazy" />
 								</div>
-								<div class="dress-code-text">
-									<p><strong>Para eles:</strong> Terno claro (bege, cinza ou azul marinho) completo. Gravata opcional, mas bem-vinda.</p>
-								</div>
+								<!--<div class="dress-code-image-label">Para eles</div>-->
+							</div>
+						</div>
+						
+						<!-- Linha de texto lado a lado -->
+						<div class="dress-code-text-row">
+							<div class="dress-code-text-item">
+								<p><strong>Para elas:</strong> Vestidos longos ou midi em tons pasteis, champagnem, azul claro, verde água ou cores claras de verão. Tecidos fluidos e elegantes.</p>
+							</div>
+							
+							<div class="dress-code-text-item">
+								<p><strong>Para eles:</strong> Terno claro (bege, cinza ou azul marinho) completo. Gravata opcional, mas bem-vinda.</p>
 							</div>
 						</div>
 
@@ -649,12 +690,13 @@
 						
 						<div class="pix-presente">
 							<div class="qr-code-container">
-								<img src="images/pix.jpg" alt="QR Code PIX para presente" />
+								<img src="images/pix.jpg" alt="QR Code PIX para presente" loading="lazy" />
 							</div>
 							<p><strong>Faça sua contribuição via PIX</strong></p>
 							<p>Escaneie o QR Code acima ou use a chave PIX:</p>
-							<p>style="word-break: break-all; background: rgba(255,255,255,0.1); padding: 8px; border-radius: 5px; font-size: 0.9em; margin: 10px 0;">
+							<p style="word-break: break-all; background: rgba(255,255,255,0.1); padding: 8px; border-radius: 5px; font-size: 0.9em; margin: 10px 0;">
 								CPF: 397.079.908-21 - James Andrade Moreno Jr
+							</p>
 							<p style="font-size: 0.9em; margin-top: 10px;"><em>Todos os presentes serão muito bem-vindos e recebidos com muito carinho!</em></p>
 						</div>
 						
@@ -707,7 +749,7 @@
 						</ul>
 					</div>
 					<div class="image">
-						<img src="images/hospedagem.jpg" alt="Piracicaba - Pontos Turísticos e hospedagem" />
+						<img src="images/hospedagem.jpg" alt="Piracicaba - Pontos Turísticos e hospedagem" loading="lazy" />
 					</div>
 				</section>
 
@@ -787,67 +829,92 @@
 		<script src="assets/js/main.js"></script>
 		
 	    <script>
-        	// Sistema de Música
+        	// Sistema de Música CORRIGIDO
         	const musicPlayer = document.getElementById('musicPlayer');
         	const playBtn = document.getElementById('playBtn');
         	const pauseBtn = document.getElementById('pauseBtn');
         	const stopBtn = document.getElementById('stopBtn');
         	const musicInfo = document.getElementById('musicInfo');
 
-        	let audio = new Audio('assets/music/you_look_like_you_love_me.mp3');
-        	audio.loop = true;
-        	audio.volume = 0.5; // Volume médio
-        	audio.preload = 'auto';
+        	let audio = null;
+			let isPlaying = false;
+
+			// Função para criar e configurar o áudio
+			function createAudio() {
+				audio = new Audio('assets/music/you_look_like_you_love_me.mp3');
+				audio.loop = true;
+				audio.volume = 0.5;
+				audio.preload = 'auto';
+				
+				// Configurar eventos do áudio
+				audio.addEventListener('play', function () {
+					isPlaying = true;
+					musicInfo.textContent = 'Tocando...';
+					playBtn.style.display = 'none';
+					pauseBtn.style.display = 'flex';
+				});
+
+				audio.addEventListener('pause', function () {
+					isPlaying = false;
+					playBtn.style.display = 'flex';
+					pauseBtn.style.display = 'none';
+					musicInfo.textContent = 'Pausado';
+				});
+
+				audio.addEventListener('ended', function () {
+					isPlaying = false;
+					playBtn.style.display = 'flex';
+					pauseBtn.style.display = 'none';
+					musicInfo.textContent = 'Finalizado';
+				});
+			}
+
+			// Função para tocar música
+			function playMusic() {
+				if (!audio) createAudio();
+				audio.play().then(() => {
+					console.log('Música tocando');
+				}).catch(error => {
+					console.error('Erro ao iniciar música:', error);
+					musicInfo.textContent = 'Clique para tocar';
+					// Tenta novamente com interação do usuário
+					document.body.addEventListener('click', function userInteraction() {
+						playMusic();
+						document.body.removeEventListener('click', userInteraction);
+					}, { once: true });
+				});
+			}
+
+			// Função para pausar música
+			function pauseMusic() {
+				if (audio) {
+					audio.pause();
+				}
+			}
+
+			// Função para parar música
+			function stopMusic() {
+				if (audio) {
+					audio.pause();
+					audio.currentTime = 0;
+				}
+			}
 			
-		        // Configurar eventos do áudio
-       		audio.addEventListener('play', function () {
-            musicInfo.textContent = 'Tocando...';
-            playBtn.style.display = 'none';
-            pauseBtn.style.display = 'flex';
-        });
-
-       		audio.addEventListener('pause', function () {
-            playBtn.style.display = 'flex';
-            pauseBtn.style.display = 'none';
-            musicInfo.textContent = 'Pausado';
-        });
-
-        	audio.addEventListener('ended', function () {
-            playBtn.style.display = 'flex';
-            pauseBtn.style.display = 'none';
-            musicInfo.textContent = 'Finalizado';
-        });
-
-        // Função para tocar música
-        function playMusic() {
-            audio.play().catch(error => {
-                console.error('Erro ao iniciar música:', error);
-                musicInfo.textContent = 'Erro ao tocar';
-            });
-        }
-
-        // Função para pausar música
-        function pauseMusic() {
-            audio.pause();
-        }
-
-        // Função para parar música
-        function stopMusic() {
-            audio.pause();
-            audio.currentTime = 0;
-        }
+			// Tentar autoplay
+			function tryAutoplay() {
+				if (!audio) createAudio();
+				playMusic();
+			}
 			
 			// AGUARDAR O DOCUMENTO CARREGAR COMPLETAMENTE
 			document.addEventListener('DOMContentLoaded', function() {
 				
-				// Contador Regressivo para 16 de Janeiro de 2027 às 16:00 - CORRIGIDO
+				// Contador Regressivo para 16 de Janeiro de 2027 às 16:00
 				function atualizarContador() {
-					// Data do casamento: 16 de Janeiro de 2027 às 16:00
-					const dataCasamento = new Date(2027, 0, 16, 16, 0, 0); // Janeiro é 0 (0-11)
+					const dataCasamento = new Date(2027, 0, 16, 16, 0, 0);
 					const agora = new Date();
 					const diferenca = dataCasamento.getTime() - agora.getTime();
 					
-					// Verificar se os elementos existem
 					const diasElement = document.getElementById('dias');
 					const horasElement = document.getElementById('horas');
 					const minutosElement = document.getElementById('minutos');
@@ -855,7 +922,6 @@
 					const contadorElement = document.getElementById('contador-regressivo');
 					
 					if (!diasElement || !horasElement || !minutosElement || !segundosElement || !contadorElement) {
-						console.error('Elementos do contador não encontrados!');
 						return;
 					}
 					
@@ -874,10 +940,8 @@
 					}
 				}
 				
-				// Iniciar contador imediatamente
+				// Iniciar contador
 				atualizarContador();
-				
-				// Atualizar contador a cada segundo
 				setInterval(atualizarContador, 1000);
 				
 				// Event listeners para os botões de música
@@ -893,7 +957,7 @@
 					stopBtn.addEventListener('click', stopMusic);
 				}
 				
-				// Controle por teclado (espaço para play/pause)
+				// Controle por teclado
 				document.addEventListener('keydown', function(event) {
 					if (event.code === 'Space' && audio) {
 						event.preventDefault();
@@ -905,11 +969,8 @@
 					}
 				});
 				
-				// Iniciar o processo de autoplay
-				createAudio();
-				
 				// Tentar autoplay após um pequeno delay
-				setTimeout(tryAutoplay, 500);
+				setTimeout(tryAutoplay, 1000);
 				
 				// Validação do formulário
 				const form = document.querySelector('form');
@@ -922,26 +983,38 @@
 							return false;
 						}
 						
-						// Simulação de envio (substituir por código real)
 						e.preventDefault();
 						alert('Obrigado por confirmar sua presença! Em breve entraremos em contato.');
 						this.reset();
 					});
 				}
 				
-				console.log('Site carregado com sucesso! Contador e música ativos.');
+				// Otimização: Lazy loading para elementos pesados
+				const lazyLoadElements = document.querySelectorAll('img[data-src], iframe[data-src]');
+				const lazyLoadObserver = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							const element = entry.target;
+							if (element.tagName === 'IMG') {
+								element.src = element.dataset.src;
+							} else if (element.tagName === 'IFRAME') {
+								element.src = element.dataset.src;
+							}
+							lazyLoadObserver.unobserve(element);
+						}
+					});
+				});
+				
+				lazyLoadElements.forEach(element => {
+					lazyLoadObserver.observe(element);
+				});
 			});
 			
-			// Também tentar autoplay após a página estar completamente carregada
+			// Tentar autoplay após a página estar completamente carregada
 			window.addEventListener('load', function() {
-				setTimeout(tryAutoplay, 800);
+				setTimeout(tryAutoplay, 500);
 			});
 		</script>
 
 	</body>
 </html>
-
-
-
-
-
